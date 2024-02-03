@@ -1,0 +1,76 @@
+:root {
+  --yellow: #f9d806;
+  --light-yellow: #ffee80;
+  --black: #130f40;
+  --light-color: #666;
+  --border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  --main-color: #ffa500;
+  --text-color: #020102;
+  --bg-color: #fff;
+}
+
+.vehicles .vehicle-slider {
+  height: 777px;
+}
+.vehicles .vehicle-slider .box {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.vehicles .vehicle-slider .box .content {
+  transform: scale(1);
+  opacity: 0.5;
+}
+
+.services h1 span {
+  color: var(--main-color);
+}
+
+.services h1 {
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.services .box-container .box {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+}
+
+.services .box-container .box i {
+  height: 6rem;
+  width: 6rem;
+  line-height: 6rem;
+  font-size: 2.5rem;
+  color: var(--black);
+  background: var(--main-color);
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+}
+
+.services .box-container .box h3 {
+  color: var(--black);
+  font-size: 2.2rem;
+}
+
+.services .box-container .box p {
+  color: var(--light-color);
+  font-size: 1.4rem;
+  padding: 1rem 0;
+  line-height: 1.8;
+}
+
+.services .box-container .box:hover {
+  background: rgb(134, 126, 154);
+}
+
+.services .box-container .box:hover h3 {
+  color: #eee;
+}
+.services .box-container .box:hover p {
+  color: #eee;
+}
