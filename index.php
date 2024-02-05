@@ -49,7 +49,9 @@ if (isset($_SESSION["user"])) {
     <section class="home" id="home">
         <div class="home-text">
             <h1>Welcome
-                <span style="text-transform: capitalize;"><?php echo $_SESSION['user_name'] ?></span>
+                <span style="text-transform: capitalize;">
+                    <?php echo $_SESSION['user_name'] ?>
+                </span>
             </h1>
             <h1>We Have Everything <br>Your <span>EV Car</span> Need</h1>
             <p>Lorem ipsum dolor sit amet consectetur <br>adipisicing elit. Aut, enim.</p>
@@ -194,70 +196,26 @@ if (isset($_SESSION["user"])) {
         </div>
         <!-- Parts Container  -->
         <div class="parts-container container">
-            <div class="box">
-                <img src="img/part1.png" alt="">
-                <h3>Auto Spare Parts</h3>
-                <span>$120.99</span>
-                <i class='bx bxs-star'>6 Reviews</i>
-                <a href="parts_sell_form.php" type="submit" id="parts" class="btn">Buy Now</a>
-                <a href="" class="details">View Details</a>
-            </div>
-            <div class="box">
-                <img src="img/part2.png" alt="">
-                <h3>Auto Spare Parts</h3>
-                <span>$120.99</span>
-                <i class='bx bxs-star'>6 Reviews</i>
-                <a href="parts_sell_form.php" type="submit" id="parts" class="btn">Buy Now</a>
-                <a href="" class="details">View Details</a>
-            </div>
-            <div class="box">
-                <img src="img/part3.png" alt="">
-                <h3>Auto Spare Parts</h3>
-                <span>$120.99</span>
-                <i class='bx bxs-star'>6 Reviews</i>
-                <a href="parts_sell_form.php" type="submit" id="parts" class="btn">Buy Now</a>
-                <a href="#" class="details">View Details</a>
-            </div>
-            <div class="box">
-                <img src="img/part4.png" alt="">
-                <h3>Auto Spare Parts</h3>
-                <span>$120.99</span>
-                <i class='bx bxs-star'>6 Reviews</i>
-                <a href="parts_sell_form.php" type="submit" id="parts" class="btn">Buy Now</a>
-                <a href="#" class="details">View Details</a>
-            </div>
-            <div class="box">
-                <img src="img/part5.png" alt="">
-                <h3>Auto Spare Parts</h3>
-                <span>$120.99</span>
-                <i class='bx bxs-star'>6 Reviews</i>
-                <a href="parts_sell_form.php" type="submit" id="parts" class="btn">Buy Now</a>
-                <a href="#" class="details">View Details</a>
-            </div>
-            <div class="box">
-                <img src="img/part6.png" alt="">
-                <h3>Auto Spare Parts</h3>
-                <span>$120.99</span>
-                <i class='bx bxs-star'>6 Reviews</i>
-                <a href="parts_sell_form.php" type="submit" id="parts" class="btn">Buy Now</a>
-                <a href="#" class="details">View Details</a>
-            </div>
-            <div class="box">
-                <img src="img/part7.png" alt="">
-                <h3>Auto Spare Parts</h3>
-                <span>$120.99</span>
-                <i class='bx bxs-star'>6 Reviews</i>
-                <a href="parts_sell_form.php" type="submit" id="parts" class="btn">Buy Now</a>
-                <a href="#" class="details">View Details</a>
-            </div>
-            <div class="box">
-                <img src="img/part3.png" alt="">
-                <h3>Auto Spare Parts</h3>
-                <span>$120.99</span>
-                <i class='bx bxs-star'>6 Reviews</i>
-                <a href="parts_sell_form.php" type="submit" id="parts" class="btn">Buy Now</a>
-                <a href="#" class="details">View Details</a>
-            </div>
+            <?php
+            $sqlSelect = "SELECT * FROM parts";
+            $result = mysqli_query($conn, $sqlSelect);
+            while ($data = mysqli_fetch_array($result)) {
+                ?>
+                <div class="box">
+                    <?php echo "<img class='box-img' src='img/" . basename($data['Image']) . "' alt='Car Image'><br>" ?>
+                    <h3>
+                        <?php echo $data['p_name']; ?>
+                    </h3>
+                    <span>
+                        ₹
+                        <?php echo $data['p_price']; ?>
+                    </span>
+                    <i class='bx bxs-star'>6 Reviews</i>
+                    <a href="order.php?id=<?php echo $data['ID'] ?>" type="submit" id="parts" class="btn">Buy Now</a>
+                </div>
+                <?php
+            }
+            ?>
         </div>
     </section>
     <!-- Blog Section  -->

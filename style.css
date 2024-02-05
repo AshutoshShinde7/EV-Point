@@ -212,7 +212,7 @@ header.shadow #search-icon {
   left: 1rem;
   font-weight: 400;
   font-size: 1rem;
-  background: var(--light-yellow);
+  background: orange;
   color: var(--bg-color);
   padding: 8px;
   border-radius: 0.5rem;
