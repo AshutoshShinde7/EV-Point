@@ -3,13 +3,12 @@
 session_start();
 
 include 'connect.php';
+// $product_quantity = $_SESSION['product_quantity'];
 
 if (isset($_POST['submit'])) {
-
     // $productId = $_POST['ID'];
     $pname = $_POST['p-name'];
     $price = $_POST['price'];
-    $quantity = $_POST['quantity'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $contact = $_POST['contact'];

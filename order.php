@@ -4,8 +4,11 @@ session_start();
 
 include 'connect.php';
 
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && isset($_GET['quantity'])) {
     $id = $_GET['id'];
+    $pquantity = $_GET['quantity'];
+    echo "Quantity: $pquantity";
+
     $sql = "SELECT * FROM parts WHERE ID = '$id'";
 
     $result = mysqli_query($conn, $sql);
@@ -13,7 +16,6 @@ if (isset($_GET['id'])) {
 
     $pname = $data['p_name'];
     $pprice = $data['p_price'];
-    // echo $pname;
     // $pquantity = $data['p_quantity'];
     $dcharge = 50;
     $pimg = $data['Image'];
@@ -22,14 +24,13 @@ if (isset($_GET['id'])) {
 }
 
 if (isset($_POST['submit'])) {
-    $pquantity = $_POST['quantity'];
+    // $pquantity = $_POST['quantity'];
+    // $pquantity = $_SESSION['quantity'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $contact = $_POST['contact'];
     $address = $_POST['address'];
-    $tprice = $pprice + $dcharge;
-    $tprice *= $pquantity;
-    if (empty($email) || empty($contact) || empty($quantity) || empty($name) || empty($address)) {
+    if (empty($email) || empty($contact) || empty($name) || empty($address)) {
         die("Error: All fields are required.");
     } else {
         $insert = "INSERT INTO `parts_sells` (`Part Name`, `Part Price`, `Quantity`, `Email`, `Name`, `Contact`, `Address`) VALUES ('$pname', '$pprice', '$quantity', '$email', '$name', '$contact', '$address')";
@@ -37,6 +38,9 @@ if (isset($_POST['submit'])) {
         header('Location:index.php');
     }
 }
+
+$tprice = $pprice + $dcharge;
+// $tprice = $tprice * $pquantity;
 ?>
 <!DOCTYPE html>
 <html>
@@ -132,6 +136,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
+    <!-- <?php echo $pquantity; ?> -->
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 mb-5">
@@ -173,7 +178,7 @@ if (isset($_POST['submit'])) {
     <section class="sec">
         <div class="form-container">
             <span class="fas fa-times" id="close-login-form"></span>
-            <form action="pay.php" method="post">
+            <form action="" method="post">
                 <h3>Buy Now</h3>
                 <?php
                 if (isset($error)) {
@@ -184,7 +189,7 @@ if (isset($_POST['submit'])) {
                 }
                 ;
                 ?>
-                <input type="number" name="quantity" required placeholder="Enter the Quantity" class="box">
+                <!-- <input type="number" name="quantity" required placeholder="Enter the Quantity" class="box"> -->
                 <input type="text" name="name" required placeholder="Enter your Name" class="box">
                 <input type="email" name="email" placeholder="Enter your Email" required class="box">
                 <input type="number" name="contact" required placeholder="Enter your Contact Number" class="box">

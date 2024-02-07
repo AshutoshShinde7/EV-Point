@@ -188,6 +188,23 @@ if (isset($_SESSION["user"])) {
     </Section>
     <!-- Parts Section -->
 
+    <style>
+        .q {
+            margin-bottom: 5px;
+        }
+
+        .lab {
+            color: #ffa500;
+        }
+
+        #myInput {
+            border: 2px solid #ffa500;
+            border-radius: 7px;
+            max-width: 50px;
+            text-align: center;
+        }
+    </style>
+
     <section class="parts" id="parts">
         <div class="heading">
             <span>What we Offer</span>
@@ -197,6 +214,9 @@ if (isset($_SESSION["user"])) {
         <!-- Parts Container  -->
         <div class="parts-container container">
             <?php
+            if (isset($_POST['submit'])) {
+                $pqunatity = $_POST['quantity'];
+            }
             $sqlSelect = "SELECT * FROM parts";
             $result = mysqli_query($conn, $sqlSelect);
             while ($data = mysqli_fetch_array($result)) {
@@ -211,7 +231,13 @@ if (isset($_SESSION["user"])) {
                         <?php echo $data['p_price']; ?>
                     </span>
                     <i class='bx bxs-star'>6 Reviews</i>
-                    <a href="order.php?id=<?php echo $data['ID'] ?>" type="submit" id="parts" class="btn">Buy Now</a>
+                    <form action="order.php" method="post">
+                        <div class="q">
+                            <label for="quantity" class="lab">Qantity : </label>
+                            <input type="number" id="myInput" name="quantity" value="1">
+                        </div>
+                        <a href="order.php?id=<?php echo $data['ID'];?>& quantity=$pquqntity" type="submit" id="parts" class="btn">Buy Now</a>
+                    </form>
                 </div>
                 <?php
             }
