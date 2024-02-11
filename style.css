@@ -179,6 +179,8 @@ header.shadow #search-icon {
   font-weight: 300;
 }
 
+/* Cars  */
+
 .cars-container {
   display: flex;
   flex-wrap: wrap;
@@ -222,6 +224,7 @@ header.shadow #search-icon {
   background: var(--main-color);
   color: var(--bg-color);
 }
+
 /* Vehicles */
 
 .heading-v {
@@ -307,6 +310,68 @@ header.shadow #search-icon {
   background: var(--yellow);
 }
 
+/* CARS  */
+
+.featured {
+  padding: 1rem;
+  padding-bottom: 4rem;
+  
+}
+
+.featured .wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+}
+
+.featured .wrapper .box {
+  /* position: relative; */
+  text-align: center;
+  padding: 2rem;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  border-radius: .5rem;
+  width: 22.5vw;
+  height: 550px;
+  overflow: hidden;
+}
+
+.featured .wrapper .box img {
+  height: 15rem;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}
+
+.featured .wrapper .box:hover img {
+  transform: scale(0.9);
+}
+
+.featured .wrapper .box h3 {
+  /* white-space: nowrap; */
+  font-size: 2.2rem;
+  color: var(--black);
+  /* width: 300px; */
+}
+
+.featured .wrapper .box marquee {
+  margin: 0 auto;
+}
+
+.featured .wrapper .box .stars {
+  padding: 1rem 0;
+}
+
+.featured .wrapper .box .stars i {
+  font-size: 1.7rem;
+  color: var(--yellow);
+}
+
+.featured .wrapper .box .price {
+  font-size: 2.5rem;
+  color: var(--black);
+  
+}
 /* Services */
 
 .services .box-container {
@@ -525,10 +590,32 @@ header.shadow #search-icon {
   }
 }
 
+@media (max-width: 1280px) {
+  .featured .wrapper .box {
+  width: 22vw;
+  }
+}
+
+@media (max-width: 1186px) {
+  .featured .wrapper .box .price{
+    font-size: 2rem;
+    margin-bottom: 5px;
+  }
+}
+
 @media (max-width: 1080px) {
   .container {
     /* margin-left: 1rem; */
     margin-right: 1rem;
+  }
+}
+
+@media (max-width: 1066) {
+  .featured .wrapper .box {
+    width: 30vw;
+  }
+  .featured .wrapper .box .stars i {
+    font-size: 1rem;
   }
 }
 

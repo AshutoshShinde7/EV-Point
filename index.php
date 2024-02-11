@@ -129,8 +129,44 @@ if (isset($_SESSION["user"])) {
             <div class="swiper-pagination"></div>
     </section>
 
+    <!-- Featured Cars Section  -->
+
+    <section class="featured" id="featured">
+        <h1 class="heading">Featured Cars</h1>
+        <div class="wrapper">
+            <?php
+            $sqlSelect = "SELECT * FROM cars";
+            $result = mysqli_query($conn, $sqlSelect);
+            while ($data = mysqli_fetch_array($result)) {
+                ?>
+                <div class="box">
+                    <?php echo "<img class='box-img' src='img/" . basename($data['Image']) . "' alt='Car Image'><br>" ?>
+                    <h3>
+                        <!-- <?php echo $data['Title']; ?> -->
+                        <marquee behavior="scroll" direction="left" scrollamount="10">
+                            <?php echo $data['Title']; ?>
+                        </marquee>
+                    </h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="price">₹
+                        <?php echo $data['Price']; ?> Lakh
+                    </div>
+                    <a href="" class="btn">check out</a>
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+    </section>
+
     <!-- Service Section -->
-    <section class="services" id="services">
+    <!-- <section class="services" id="services">
         <h1>Our <span>Services</span></h1>
         <div class="box-container">
             <div class="box">
@@ -170,7 +206,7 @@ if (isset($_SESSION["user"])) {
                 <a href="parts_sell_form.php" class="btn">Read More</a>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- About Section -->
     <Section class="about container" id="about">
@@ -236,7 +272,8 @@ if (isset($_SESSION["user"])) {
                             <label for="quantity" class="lab">Qantity : </label>
                             <input type="number" id="myInput" name="quantity" value="1">
                         </div>
-                        <a href="order.php?id=<?php echo $data['ID'];?>& quantity=$pquqntity" type="submit" id="parts" class="btn">Buy Now</a>
+                        <a href="order.php?id=<?php echo $data['ID']; ?>& quantity=$pquqntity" type="submit" id="parts"
+                            class="btn">Buy Now</a>
                     </form>
                 </div>
                 <?php
