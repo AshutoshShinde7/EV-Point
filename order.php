@@ -4,10 +4,15 @@ session_start();
 
 include 'connect.php';
 
-if (isset($_GET['id']) && isset($_GET['quantity'])) {
-    $id = $_GET['id'];
-    $pquantity = $_GET['quantity'];
+if (isset($_POST['submit'])){
+    $pquantity = $_POST['quantity'];
     echo "Quantity: $pquantity";
+}
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    // $pquantity = $_GET['quantity'];
+    // echo "Quantity: $pquantity";
 
     $sql = "SELECT * FROM parts WHERE ID = '$id'";
 
@@ -34,8 +39,9 @@ if (isset($_POST['submit'])) {
         die("Error: All fields are required.");
     } else {
         $insert = "INSERT INTO `parts_sells` (`Part Name`, `Part Price`, `Quantity`, `Email`, `Name`, `Contact`, `Address`) VALUES ('$pname', '$pprice', '$quantity', '$email', '$name', '$contact', '$address')";
-        mysqli_query($conn, $insert);
-        header('Location:index.php');
+        mysqli_query($conn, $insert); 
+         header('Location:index.php');?>
+        <script>alert('Order placed successfully!');</script>;<?php
     }
 }
 

@@ -306,6 +306,23 @@ header.shadow #search-icon {
   padding: 0 0.5rem;
 }
 
+.vehicles .vehicle-slider {
+  height: 777px;
+}
+.vehicles .vehicle-slider .box {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.vehicles .vehicle-slider .box .content {
+  transform: scale(1);
+  opacity: 0.5;
+}
+
+.vehicles .vehicle-slider .swiper-slide-active .content {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .swiper-pagination-bullet-active {
   background: var(--yellow);
 }
@@ -321,20 +338,20 @@ header.shadow #search-icon {
 .featured .wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
 }
 
 .featured .wrapper .box {
-  /* position: relative; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 17rem;
   text-align: center;
-  padding: 2rem;
+  padding: 20px;
   box-shadow: var(--box-shadow);
-  border: var(--border);
   border-radius: .5rem;
-  width: 22.5vw;
-  height: 550px;
-  overflow: hidden;
+  max-width: 40rem;
 }
 
 .featured .wrapper .box img {
@@ -348,10 +365,8 @@ header.shadow #search-icon {
 }
 
 .featured .wrapper .box h3 {
-  /* white-space: nowrap; */
   font-size: 2.2rem;
   color: var(--black);
-  /* width: 300px; */
 }
 
 .featured .wrapper .box marquee {
@@ -371,14 +386,6 @@ header.shadow #search-icon {
   font-size: 2.5rem;
   color: var(--black);
   
-}
-/* Services */
-
-.services .box-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 1.5rem;
-  padding: 0 10px;
 }
 
 .about {
@@ -406,6 +413,8 @@ header.shadow #search-icon {
   margin: 0.5rem 0 1.4rem;
 }
 
+/* parts  */
+
 .parts-container {
   display: flex;
   flex-wrap: wrap;
@@ -421,6 +430,7 @@ header.shadow #search-icon {
   flex-direction: column;
   background: #f6f6f6;
   border-radius: 0.5rem;
+  max-width: 22rem;
 }
 
 .parts-container .box img {
@@ -590,7 +600,7 @@ header.shadow #search-icon {
   }
 }
 
-@media (max-width: 1280px) {
+/* @media (max-width: 1280px) {
   .featured .wrapper .box {
   width: 22vw;
   }
@@ -601,7 +611,7 @@ header.shadow #search-icon {
     font-size: 2rem;
     margin-bottom: 5px;
   }
-}
+} */
 
 @media (max-width: 1080px) {
   .container {
@@ -610,14 +620,18 @@ header.shadow #search-icon {
   }
 }
 
-@media (max-width: 1066) {
+/* @media (max-width: 1066) {
   .featured .wrapper .box {
-    width: 30vw;
+    width: 5rem;
+    max-width: 30vw;
+  }
+  .featured .wrapper .box h3 {
+    font-size: 1.8rem;
   }
   .featured .wrapper .box .stars i {
     font-size: 1rem;
   }
-}
+} */
 
 @media (max-width: 991px) {
   .nav {

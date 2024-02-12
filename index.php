@@ -4,6 +4,9 @@ include('connect.php');
 if (isset($_SESSION["user"])) {
     header("Location: index.php");
 }
+include('func.php');
+
+$user_data = check_login($conn);
 ?>
 <!DOCTYPE html>
 <html>
@@ -165,49 +168,6 @@ if (isset($_SESSION["user"])) {
         </div>
     </section>
 
-    <!-- Service Section -->
-    <!-- <section class="services" id="services">
-        <h1>Our <span>Services</span></h1>
-        <div class="box-container">
-            <div class="box">
-                <i class="fas fa-car"></i>
-                <h3>Car Selling</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, illum?</p>
-                <a href="parts_sell_form.php" class="btn">Read More</a>
-            </div>
-            <div class="box">
-                <i class="fas fa-tools"></i>
-                <h3>Parts Repair</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, illum?</p>
-                <a href="parts_sell_form.php" class="btn">Read More</a>
-            </div>
-            <div class="box">
-                <i class="fas fa-car-crash"></i>
-                <h3>Car Insurance</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, illum?</p>
-                <a href="parts_sell_form.php" class="btn">Read More</a>
-            </div>
-            <div class="box">
-                <i class="fas fa-car-battry"></i>
-                <h3>Battery Replacement</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, illum?</p>
-                <a href="parts_sell_form.php" class="btn">Read More</a>
-            </div>
-            <div class="box">
-                <i class="fas fa-gas-pump"></i>
-                <h3>Oil Change</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, illum?</p>
-                <a href="parts_sell_form.php" class="btn">Read More</a>
-            </div>
-            <div class="box">
-                <i class="fas fa-headset"></i>
-                <h3>24/7 Support</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, illum?</p>
-                <a href="parts_sell_form.php" class="btn">Read More</a>
-            </div>
-        </div>
-    </section> -->
-
     <!-- About Section -->
     <Section class="about container" id="about">
         <div class="about-img">
@@ -250,9 +210,9 @@ if (isset($_SESSION["user"])) {
         <!-- Parts Container  -->
         <div class="parts-container container">
             <?php
-            if (isset($_POST['submit'])) {
-                $pqunatity = $_POST['quantity'];
-            }
+            // if (isset($_POST['submit'])) {
+            //     $pquantity = $_POST['quantity'];
+            // }
             $sqlSelect = "SELECT * FROM parts";
             $result = mysqli_query($conn, $sqlSelect);
             while ($data = mysqli_fetch_array($result)) {
@@ -272,8 +232,7 @@ if (isset($_SESSION["user"])) {
                             <label for="quantity" class="lab">Qantity : </label>
                             <input type="number" id="myInput" name="quantity" value="1">
                         </div>
-                        <a href="order.php?id=<?php echo $data['ID']; ?>& quantity=$pquqntity" type="submit" id="parts"
-                            class="btn">Buy Now</a>
+                        <a href="order.php?id=<?php echo $data['ID']; ?>" type="submit" id="parts" class="btn">Buy Now</a>
                     </form>
                 </div>
                 <?php
