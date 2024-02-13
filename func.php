@@ -1,19 +1,22 @@
 <?php
-function check_login($conn)
-{
-    if (isset($_SESSION['ID'])) {
-        $id = $_SESSION['ID'];
-        $query = "SELECT * FROM users WHERE ID = '$id' LIMIT 1";
+function updateProductQuantity($Id, $pquantity, $conn) {
 
-        $result = mysqli_query($conn, $query);
-
-        if ($result && mysqli_num_rows($result) > 0) {
-
-            $user_data = mysqli_fetch_assoc($result);
-            return $user_data;
+    $sql = "SELECT p_quantity FROM parts WHERE ID = $Id";
+    $result = mysqli_query($conn, $sql);
+    
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $currentQuantity = $row['p_quantity'];
+        
+        $newQuantity = $currentQuantity - $pquantity;
+        
+        $updateSql = "UPDATE parts SET p_quantity = $newQuantity WHERE ID = $Id";
+        if (mysqli_query($conn, $updateSql) === TRUE) {
+            echo "Product quantity updated successfully.";
+        } else {
+            echo "Error updating product quantity: " . $conn->error;
         }
+    } else {
+        echo "Product not found.";
     }
-    //redirect to login
-    header("Location: login.php");
-    die();
 }

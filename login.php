@@ -5,16 +5,17 @@ include 'connect.php';
 session_start();
 
 if (isset($_POST['submit'])) {
-
+   
    $uname = $_POST['user_name'];
    $pass = $_POST['password'];
-
+   
    $select = " SELECT * FROM users WHERE user_name = '$uname' AND Password = '$pass'";
    $result = mysqli_query($conn, $select);
    if (mysqli_num_rows($result) > 0) {
-
+      
+      $_SESSION['logged_in'] = true;
+      
       $row = mysqli_fetch_assoc($result);
-
       if ($row['user_type'] == 'admin') {
          $_SESSION['admin_name'] = $row['user_name'];
          header('Location:admin/admin.php');

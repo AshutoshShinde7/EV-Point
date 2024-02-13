@@ -33,16 +33,23 @@ if (!isset($_SESSION['admin_name'])) {
                   <?php echo $_SESSION['admin_name'] ?>
                </span></h1>
             <p>this is an admin page</p>
-            <a href="../login.php" class="btn">login</a>
-            <a href="../register.php" class="btn">register</a>
-            <a href="../logout.php" class="btn">logout</a>
-            <a href="add-car.php" class="btn">Add Cars</a>
-            <a href="add-parts.php" class="btn">Add Parts</a>
-            <a href="user_data.php" class="btn">Users</a>
-            <a href="bookings.php" class="btn">Test Drive Bookings</a>
-            <a href="parts-sells.php" class="btn">Parts Sells</a>
+            <div class="button">
+               <div class="log">
+                  <a href="../login.php" class="btn">login</a>
+                  <a href="../register.php" class="btn">register</a>
+                  <a href="../logout.php" class="btn">logout</a>
+               </div>
+               <div class="operation">
+                  <a href="add-car.php" class="btn">Add Cars</a>
+                  <a href="add-parts.php" class="btn">Add Parts</a>
+                  <a href="user_data.php" class="btn">Users</a>
+                  <a href="bookings.php" class="btn">Test Drive Bookings</a>
+                  <a href="parts-sells.php" class="btn">Parts Sells</a>
+               </div>
+            </div>
          </div>
       </div>
-   </section>   
+   </section>
 </body>
+
 </html>

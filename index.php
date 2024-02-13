@@ -1,12 +1,23 @@
 <?php
+
 session_start();
+
 include('connect.php');
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: login.php");
+    exit;
+}
+
+if (isset($_SESSION['alert_message'])) {
+    echo "<script>alert('".$_SESSION['alert_message']."');</script>";
+    unset($_SESSION['alert_message']);
+}
+
 if (isset($_SESSION["user"])) {
     header("Location: index.php");
 }
-include('func.php');
 
-$user_data = check_login($conn);
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,13 +49,14 @@ $user_data = check_login($conn);
             <!-- Nav List -->
             <ul class="navbar">
                 <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#cars">Cars</a></li>
+                <li><a href="#vehicles">Cars</a></li>
+                <li><a href="#featured">Featured</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#parts">Parts</a></li>
                 <li><a href="#blog">Our Blog</a></li>
             </ul>
             <div class="s-l" id="login-btn">
-                <a href="login.php" class="btn" id="login-btn--">Login</a>
+                <a href="logout.php" class="btn" id="login-btn--">LogOut</a>
             </div>
         </div>
     </header>
@@ -63,13 +75,13 @@ $user_data = check_login($conn);
         </div>
     </section>
     <!-- Car Section -->
-    <section class="cars" id="cars">
+    <!-- <section class="cars" id="cars">
         <div class="heading">
             <span>All Cars</span>
             <h2>We have all types of EV cars</h2>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat, deserunt.</p>
         </div>
-        <!-- Cars Container  -->
+        Cars Container 
         <div class="cars-container container">
             <?php
             $sqlSelect = "SELECT * FROM cars";
@@ -87,7 +99,7 @@ $user_data = check_login($conn);
             ?>
             <iframe id="transferFrame" style="display: none;"></iframe>
         </div>
-    </section>
+    </section> -->
 
     <!-- Vehicles Section -->
 
@@ -135,7 +147,7 @@ $user_data = check_login($conn);
     <!-- Featured Cars Section  -->
 
     <section class="featured" id="featured">
-        <h1 class="heading">Featured Cars</h1>
+        <h1 class="heading">Featured <span>Cars</span></h1>
         <div class="wrapper">
             <?php
             $sqlSelect = "SELECT * FROM cars";
@@ -186,7 +198,7 @@ $user_data = check_login($conn);
 
     <style>
         .q {
-            margin-bottom: 5px;
+            margin-bottom: 12px;
         }
 
         .lab {
@@ -229,7 +241,7 @@ $user_data = check_login($conn);
                     <i class='bx bxs-star'>6 Reviews</i>
                     <form action="order.php" method="post">
                         <div class="q">
-                            <label for="quantity" class="lab">Qantity : </label>
+                            <label class="lab">Qantity : </label>
                             <input type="number" id="myInput" name="quantity" value="1">
                         </div>
                         <a href="order.php?id=<?php echo $data['ID']; ?>" type="submit" id="parts" class="btn">Buy Now</a>
@@ -240,7 +252,7 @@ $user_data = check_login($conn);
             ?>
         </div>
     </section>
-    <!-- Blog Section  -->
+    <!-- Blog Section -->
     <section class="blog" id="blog">
         <div class="heading">
             <span>Blog and News</span>
@@ -279,6 +291,7 @@ $user_data = check_login($conn);
             </div>
         </div>
     </section>
+    <!-- Fotter Section -->
     <section class="footer">
         <div class="footer-container container">
             <div class="footer-box">

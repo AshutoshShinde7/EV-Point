@@ -51,7 +51,7 @@ if(isset($_POST['submit'])){
       <input type="number" name="contact" required placeholder="Enter your Contact Number">
       <input type="password" name="password" required placeholder="Enter your Password">
       <input type="password" name="cpassword" required placeholder="Confirm your Password">
-      <select name="user_type">
+      <select  name="user_type" hidden>
          <option value="user">user</option>
          <option value="admin">admin</option>
       </select>

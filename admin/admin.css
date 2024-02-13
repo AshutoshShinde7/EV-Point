@@ -29,13 +29,19 @@
     padding-bottom: 60px;
 }
 
-.base .container .content {
+.base .container .content .button {
     text-align: center;
+    display: flex;
+    gap:  15px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .base .container .content h2{
     color: #333;
     font-size: 30px;
+    text-transform: capitalize;
 }
 
 .base .container .content h2 span {
@@ -43,9 +49,12 @@
     color: #fff;
     border-radius: 5px;
     padding: 0 15px;    
-    text-transform: capitalize;
 }
 
+.base .container .content h1 {
+   text-align: center;
+   text-transform: capitalize;
+}
 .base .container .content h1 span {
    color: var(--main-color);
    text-transform: capitalize;
@@ -54,6 +63,7 @@
 .base .container .content p {
     font-size: 25px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .base .container .content .btn {

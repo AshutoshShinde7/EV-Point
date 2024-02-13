@@ -1,13 +1,14 @@
 <?php
 
 session_start();
-
+$_SESSION['alert_message'] = "Payment successful!";
 include 'connect.php';
 
-if (isset($_POST['submit'])){
-    $pquantity = $_POST['quantity'];
-    echo "Quantity: $pquantity";
-}
+// if (isset($_POST['submit'])){
+//     $pquantity = $_POST['quantity'];
+//     echo "Quantity: $pquantity";
+// }
+$pquantity = 1;
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -39,14 +40,14 @@ if (isset($_POST['submit'])) {
         die("Error: All fields are required.");
     } else {
         $insert = "INSERT INTO `parts_sells` (`Part Name`, `Part Price`, `Quantity`, `Email`, `Name`, `Contact`, `Address`) VALUES ('$pname', '$pprice', '$quantity', '$email', '$name', '$contact', '$address')";
-        mysqli_query($conn, $insert); 
-         header('Location:index.php');?>
-        <script>alert('Order placed successfully!');</script>;<?php
+        mysqli_query($conn, $insert);
+        header('Location:index.php');
+        updateProductQuantity($Id, $pquantity, $conn); 
     }
 }
 
 $tprice = $pprice + $dcharge;
-// $tprice = $tprice * $pquantity;
+$t_price = $tprice * $pquantity;
 ?>
 <!DOCTYPE html>
 <html>
@@ -174,7 +175,7 @@ $tprice = $pprice + $dcharge;
                     <tr>
                         <th>Amount to Pay : </th>
                         <td>₹
-                            <?php echo $tprice; ?>
+                            <?php echo $t_price; ?>
                         </td>
                     </tr>
                 </table>
