@@ -172,7 +172,7 @@ if (isset($_SESSION["user"])) {
                     <div class="price">₹
                         <?php echo $data['Price']; ?> Lakh
                     </div>
-                    <a href="" class="btn">check out</a>
+                    <a href="booking.php" class="btn">check out</a>
                 </div>
                 <?php
             }
@@ -304,7 +304,7 @@ if (isset($_SESSION["user"])) {
                 </div>
             </div>
             <div class="footer-box">
-                <h3>Page</h3>
+                <h3>Pages</h3>
                 <a href="#home">Home</a>
                 <a href="#cars">Cars</a>
                 <a href="#parts">Parts</a>
@@ -320,7 +320,7 @@ if (isset($_SESSION["user"])) {
                 <h3>Contact</h3>
                 <p>India</p>
                 <p>India</p>
-                <p>India</p>
+                <a href="feedback.php">Submit Your Feedback</a>
             </div>
         </div>
     </section>

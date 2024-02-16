@@ -242,10 +242,12 @@ header.shadow #search-icon {
 
 .vehicles .vehicle-slider {
   padding-bottom: 5rem;
+  height: 777px;
 }
 
 .vehicles .vehicle-slider .box {
   text-align: center;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 .vehicles .vehicle-slider .box img {
@@ -257,7 +259,8 @@ header.shadow #search-icon {
 }
 
 .vehicles .vehicle-slider .box .content {
-  transform: scale(0);
+  transform: scale(1);
+  opacity: 0.5;
   padding-top: 1rem;
 }
 
@@ -268,7 +271,7 @@ header.shadow #search-icon {
 
 .vehicles .vehicle-slider .swiper-slide-active .content {
   opacity: 1;
-  transform: scale(1);
+  /* transform: scale(1); */
 }
 
 .vehicles .vehicle-slider .swiper-slide-active .content .btn {
@@ -307,22 +310,7 @@ header.shadow #search-icon {
   padding: 0 0.5rem;
 }
 
-.vehicles .vehicle-slider {
-  height: 777px;
-}
-.vehicles .vehicle-slider .box {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
 
-.vehicles .vehicle-slider .box .content {
-  transform: scale(1);
-  opacity: 0.5;
-}
-
-.vehicles .vehicle-slider .swiper-slide-active .content {
-  opacity: 1;
-  transform: scale(1);
-}
 
 .swiper-pagination-bullet-active {
   background: var(--yellow);

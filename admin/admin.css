@@ -48,7 +48,8 @@
     background: var(--main-color);
     color: #fff;
     border-radius: 5px;
-    padding: 0 15px;    
+    padding: 0 15px;  
+    font-weight: bolder;  
 }
 
 .base .container .content h1 {
@@ -58,6 +59,7 @@
 .base .container .content h1 span {
    color: var(--main-color);
    text-transform: capitalize;
+   font-weight: bolder;  
 }
 
 .base .container .content p {

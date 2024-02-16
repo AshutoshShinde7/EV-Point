@@ -8,12 +8,12 @@ include 'connect.php';
 //     $pquantity = $_POST['quantity'];
 //     echo "Quantity: $pquantity";
 // }
+// echo "Quantity: $pquantity";
 $pquantity = 1;
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     // $pquantity = $_GET['quantity'];
-    // echo "Quantity: $pquantity";
 
     $sql = "SELECT * FROM parts WHERE ID = '$id'";
 
@@ -39,10 +39,10 @@ if (isset($_POST['submit'])) {
     if (empty($email) || empty($contact) || empty($name) || empty($address)) {
         die("Error: All fields are required.");
     } else {
-        $insert = "INSERT INTO `parts_sells` (`Part Name`, `Part Price`, `Quantity`, `Email`, `Name`, `Contact`, `Address`) VALUES ('$pname', '$pprice', '$quantity', '$email', '$name', '$contact', '$address')";
+        $insert = "INSERT INTO `parts_sells` (`Part Name`, `Part Price`, `Quantity`, `Email`, `Name`, `Contact`, `Address`) VALUES ('$pname', '$pprice', '$pquantity', '$email', '$name', '$contact', '$address')";
         mysqli_query($conn, $insert);
+        updateProductQuantity($Id, $pquantity, $conn);
         header('Location:index.php');
-        updateProductQuantity($Id, $pquantity, $conn); 
     }
 }
 

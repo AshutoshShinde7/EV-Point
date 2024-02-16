@@ -64,4 +64,3 @@ var swiper = new Swiper(".vehicle-slider", {
   },
 });
 console.log("After Swiper Initialization");
-

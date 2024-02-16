@@ -32,7 +32,7 @@ if (!isset($_SESSION['admin_name'])) {
             <h1>welcome <span>
                   <?php echo $_SESSION['admin_name'] ?>
                </span></h1>
-            <p>this is an admin page</p>
+            <!-- <p>this is an admin page</p> -->
             <div class="button">
                <div class="log">
                   <a href="../login.php" class="btn">login</a>
@@ -45,6 +45,7 @@ if (!isset($_SESSION['admin_name'])) {
                   <a href="user_data.php" class="btn">Users</a>
                   <a href="bookings.php" class="btn">Test Drive Bookings</a>
                   <a href="parts-sells.php" class="btn">Parts Sells</a>
+                  <a href="feedback-d.php" class="btn">Feedbacks</a>
                </div>
             </div>
          </div>

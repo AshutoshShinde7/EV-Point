@@ -7,16 +7,13 @@ include 'connect.php';
 if (isset($_POST['submit'])) {
 
     $fname = $_POST['f-name'];
-    $lname = $_POST['l-name'];
     $email = $_POST['email'];
     $contact = $_POST['contact'];
-    $gender = $_POST['gender'];
-    $date = $_POST['date'];
-    $cname = $_POST['car-name'];
-    if (empty($fname) || empty($lname) || empty($email) || empty($contact) || empty($gender) || empty($date) || empty($cname)) {
+    $feedback = $_POST['feedback'];
+    if (empty($fname) || empty($email) || empty($contact) || empty($feedback)) {
         die("Error: All fields are required.");
     } else {
-        $insert = "INSERT INTO `booking_details` (`First Name`, `Last Name`, `Email`, `Contact`, `Gender`, `Booking Date`, `Car Name`) VALUES ('$fname', '$lname', '$email', '$contact', '$gender', '$date', '$cname')";
+        $insert = "INSERT INTO `feedback` (`Full Name`, `Email`, `Contact`, `Feedback`) VALUES ('$fname', '$email', '$contact', '$feedback')";
         mysqli_query($conn, $insert);
         header('location: index.php');
     }
@@ -30,8 +27,6 @@ if (isset($_POST['submit'])) {
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Booking Form</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
-    <!-- <script src='main.js'></script> -->
     <style>
         * {
             font-family: sans-serif;
@@ -102,6 +97,17 @@ if (isset($_POST['submit'])) {
             color: #fff;
         }
 
+        .form-container form .text-box {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 17px;
+            margin: 8px 0;
+            background: #eee;
+            border-radius: 5px;
+            resize: none;
+            overflow: hidden;
+        }
+
         .form-container form .error-msg {
             margin: 10px 0;
             display: block;
@@ -116,30 +122,21 @@ if (isset($_POST['submit'])) {
 
 <body>
     <div class="form-container">
-        <form method="post" action="index.php">
-            <h2>Book Your Test drive</h2>
+        <form method="post">
+            <h2>Give Your Feedback</h2>
             <?php
             if (isset($error)) {
                 foreach ($error as $error) {
                     echo '<span class="error-msg">' . $error . '</span>';
-                }
-                ;
-            }
-            ;
+                };
+            };
             ?>
-            <input type="text" name="f-name" placeholder="Enter Your First Name">
-            <input type="text" name="l-name" placeholder="Enter Your Last Name">
+            <input type="text" name="f-name" placeholder="Enter Your Full Name">
             <input type="email" name="email" placeholder="Enter Your Email">
             <input type="number" name="contact" placeholder="Enter Your Contact No.">
-            <label for="date">Select Gneder : </label>
-            <select name="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-            <label for="date">Book the date : </label>
-            <input type="date" name="date">
-            <input type="text" name="car-name" placeholder="Enter the car name that you wanna Test Drive">
-            <input type="submit" name="submit" value="Book now" class="form-btn">
+            <textarea type="text" name="feedback" rows="5" class="text-box" placeholder="Enter Your Feedback About Our Website"></textarea><br>
+            
+            <input type="submit" name="submit" value="Submit" class="form-btn">
     </div>
 </body>
 

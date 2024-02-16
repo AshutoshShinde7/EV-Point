@@ -45,7 +45,7 @@
    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <style>
    #add_car header {
-      padding-top: 50px;
+      padding-top: 30px;
       display: flex;
       justify-content: space-evenly;
       background: #f5e6da;
@@ -56,6 +56,10 @@
       --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
       --main-color: #ffa500;
       --bg-color: #fff;
+   }
+
+   .form-containerc{
+      max-height: 1000px
    }
 
    .form-btn {
@@ -97,11 +101,11 @@
             <input type="number" class="form-control" name="year" placeholder="Model Year">
          </div>
          <div class="form-elemnt my-4">
-            <input type="text" class="form-control" name="Transmission" placeholder="Transmission">
+            <select name="Transmission" id="" class="form-control">
+               <option name="auto" value="Automatic">Automatic</option>
+               <option name="manual" value="Manual">Manual</option>
+            </select>
          </div>
-         <!-- <div class="form-elemnt my-4">
-            <input type="text" class="form-control" name="price" placeholder="Fuel Type">
-         </div> -->
          <div class="form-elemnt my-4">
             <select name="type" id="" class="form-control">
                <option name="ev" value="Electric">Electric</option>

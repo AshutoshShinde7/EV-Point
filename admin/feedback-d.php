@@ -52,7 +52,7 @@
 <section>
 
    <div>
-      <h2>User Details</h2>
+      <h2>User Data</h2>
       <a href="admin.php" class="form-btn">Back</a>
    </div>
    <?php
@@ -60,46 +60,24 @@
    if (mysqli_connect_errno()) {
       die("Failed to connect to MySQL: " . mysqli_connect_error());
    }
-   $query = "SELECT * FROM users WHERE user_type = 'user'";
+   $query = "SELECT * FROM feedback";
    $result = mysqli_query($conn, $query);
    if (mysqli_num_rows($result) > 0) {
       echo "<table border='1'>
         <tr>
             <th>ID</th>
-            <th>Username</th>
+            <th>Full Name</th>
             <th>Email</th>
+            <th>Contact</th>
+            <th>Feedback</th>
         </tr>";
       while ($row = mysqli_fetch_assoc($result)) {
          echo "<tr>
             <td>{$row['ID']}</td>
-            <td>{$row['user_name']}</td>
+            <td>{$row['Full Name']}</td>
             <td>{$row['Email']}</td>
-        </tr>";
-      }
-      echo "</table>";
-   } else {
-      echo "No records found";
-   } 
-   ?>
-   <div>
-      <h2>Admin Details</h2>
-      <!-- <a href="admin.php" class="form-btn">Back</a> -->
-   </div>
-   <?php
-   $query = "SELECT * FROM users WHERE user_type = 'admin'";
-   $result = mysqli_query($conn, $query);
-   if (mysqli_num_rows($result) > 0) {
-      echo "<table border='1'>
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
-        </tr>";
-      while ($row = mysqli_fetch_assoc($result)) {
-         echo "<tr>
-            <td>{$row['ID']}</td>
-            <td>{$row['user_name']}</td>
-            <td>{$row['Email']}</td>
+            <td>{$row['Contact']}</td>
+            <td>{$row['Feedback']}</td>
         </tr>";
       }
       echo "</table>";
