@@ -21,7 +21,12 @@ if (!isset($_SESSION['admin_name'])) {
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="admin.css">
+   <style>
+      .base .container content .button .log a{
+         background: crimson;
+      }
+      </style>
+      <link rel="stylesheet" href="admin.css">
 </head>
 
 <body>
@@ -42,7 +47,9 @@ if (!isset($_SESSION['admin_name'])) {
                <div class="operation">
                   <a href="add-car.php" class="btn">Add Cars</a>
                   <a href="add-parts.php" class="btn">Add Parts</a>
-                  <a href="user_data.php" class="btn">Users</a>
+               </div>
+               <div class="operation">
+               <a href="user_data.php" class="btn">Users</a>
                   <a href="bookings.php" class="btn">Test Drive Bookings</a>
                   <a href="parts-sells.php" class="btn">Parts Sells</a>
                   <a href="feedback-d.php" class="btn">Feedbacks</a>

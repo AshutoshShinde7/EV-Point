@@ -1,19 +1,12 @@
 <?php
 
 session_start();
-$_SESSION['alert_message'] = "Payment successful!";
-include 'connect.php';
 
-// if (isset($_POST['submit'])){
-//     $pquantity = $_POST['quantity'];
-//     echo "Quantity: $pquantity";
-// }
-// echo "Quantity: $pquantity";
-$pquantity = 1;
+
+include 'connect.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    // $pquantity = $_GET['quantity'];
 
     $sql = "SELECT * FROM parts WHERE ID = '$id'";
 
@@ -22,16 +15,24 @@ if (isset($_GET['id'])) {
 
     $pname = $data['p_name'];
     $pprice = $data['p_price'];
-    // $pquantity = $data['p_quantity'];
     $dcharge = 50;
     $pimg = $data['Image'];
 } else {
     echo "No Product found";
 }
 
-if (isset($_POST['submit'])) {
-    // $pquantity = $_POST['quantity'];
-    // $pquantity = $_SESSION['quantity'];
+$pquantity = $_POST['quantity'];
+echo $pquantity;
+
+// function updateProductQuantity($id, $pquantity, $conn)
+// {
+//     $updateQuery = "UPDATE parts SET p_quantity = p_quantity - $pquantity WHERE ID = $id";
+//     mysqli_query($conn, $updateQuery);
+// }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+    $pquantity = $_POST['quantity'];
+
     $name = $_POST['name'];
     $email = $_POST['email'];
     $contact = $_POST['contact'];
@@ -41,7 +42,12 @@ if (isset($_POST['submit'])) {
     } else {
         $insert = "INSERT INTO `parts_sells` (`Part Name`, `Part Price`, `Quantity`, `Email`, `Name`, `Contact`, `Address`) VALUES ('$pname', '$pprice', '$pquantity', '$email', '$name', '$contact', '$address')";
         mysqli_query($conn, $insert);
-        updateProductQuantity($Id, $pquantity, $conn);
+
+        $updateQuery = "UPDATE parts SET p_quantity = p_quantity - ? WHERE ID = ?";
+        $stmt = mysqli_prepare($conn, $updateQuery);
+        mysqli_stmt_bind_param($stmt, "ii", $pquantity, $id);
+        mysqli_stmt_execute($stmt);
+        $_SESSION['alert_message'] = "Payment successful!";
         header('Location:index.php');
     }
 }
@@ -143,7 +149,6 @@ $t_price = $tprice * $pquantity;
 </head>
 
 <body>
-    <!-- <?php echo $pquantity; ?> -->
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 mb-5">
@@ -162,10 +167,12 @@ $t_price = $tprice * $pquantity;
                             <?php echo $pprice; ?>
                         </td>
                     </tr>
-                    <!-- <tr>
+                    <tr>
                         <th>Product Quantity : </th>
-                        <td><?php echo $pquantity; ?></td>
-                    </tr> -->
+                        <td>
+                            <?php echo $pquantity; ?>
+                        </td>
+                    </tr>
                     <tr>
                         <th>Delivery Charge : </th>
                         <td>₹
@@ -196,7 +203,7 @@ $t_price = $tprice * $pquantity;
                 }
                 ;
                 ?>
-                <!-- <input type="number" name="quantity" required placeholder="Enter the Quantity" class="box"> -->
+                <input type="number" name="quantity" value="<?php echo $pquantity; ?>" hidden>
                 <input type="text" name="name" required placeholder="Enter your Name" class="box">
                 <input type="email" name="email" placeholder="Enter your Email" required class="box">
                 <input type="number" name="contact" required placeholder="Enter your Contact Number" class="box">

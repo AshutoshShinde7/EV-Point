@@ -10,7 +10,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 
 if (isset($_SESSION['alert_message'])) {
-    echo "<script>alert('".$_SESSION['alert_message']."');</script>";
+    echo "<script>alert('" . $_SESSION['alert_message'] . "');</script>";
     unset($_SESSION['alert_message']);
 }
 
@@ -222,9 +222,6 @@ if (isset($_SESSION["user"])) {
         <!-- Parts Container  -->
         <div class="parts-container container">
             <?php
-            // if (isset($_POST['submit'])) {
-            //     $pquantity = $_POST['quantity'];
-            // }
             $sqlSelect = "SELECT * FROM parts";
             $result = mysqli_query($conn, $sqlSelect);
             while ($data = mysqli_fetch_array($result)) {
@@ -234,17 +231,14 @@ if (isset($_SESSION["user"])) {
                     <h3>
                         <?php echo $data['p_name']; ?>
                     </h3>
-                    <span>
-                        ₹
-                        <?php echo $data['p_price']; ?>
-                    </span>
+                    <span>₹<?php echo $data['p_price']; ?></span>
                     <i class='bx bxs-star'>6 Reviews</i>
-                    <form action="order.php" method="post">
+                    <form action="order.php?id=<?php echo $data['ID']; ?>" method="post">
                         <div class="q">
                             <label class="lab">Qantity : </label>
                             <input type="number" id="myInput" name="quantity" value="1">
                         </div>
-                        <a href="order.php?id=<?php echo $data['ID']; ?>" type="submit" id="parts" class="btn">Buy Now</a>
+                        <button type="submit" id="parts" class="btn">Buy Now</button>
                     </form>
                 </div>
                 <?php
