@@ -319,6 +319,7 @@ header.shadow #search-icon {
 /* CARS  */
 
 .featured {
+  background-color: #faecce;
   padding: 1rem;
   padding-bottom: 4rem;
 }
@@ -341,19 +342,20 @@ font-weight: bold;
 }
 
 .featured .wrapper .box {
+  background-color: #fff;
   position: relative;
   display: flex;
   flex-direction: column;
   flex: 1 1 17rem;
   text-align: center;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   box-shadow: var(--box-shadow);
   border-radius: .5rem;
   max-width: 40rem;
 }
 
 .featured .wrapper .box img {
-  height: 15rem;
+  max-height: 15rem;
   aspect-ratio: 3/2;
   object-fit: contain;
 }
@@ -367,14 +369,6 @@ font-weight: bold;
   color: var(--black);
 }
 
-.featured .wrapper .box marquee {
-  margin: 0 auto;
-}
-
-.featured .wrapper .box .stars {
-  padding: 1rem 0;
-}
-
 .featured .wrapper .box .stars i {
   font-size: 1.7rem;
   color: var(--yellow);
@@ -384,6 +378,10 @@ font-weight: bold;
   font-size: 2.5rem;
   color: var(--black);
   
+}
+
+.abt {
+  background-color: rgb(243, 225, 239);
 }
 
 .about {
@@ -412,6 +410,11 @@ font-weight: bold;
 }
 
 /* parts  */
+
+.parts {
+
+  background-color: #f6e9e9;
+}
 
 .parts-container {
   display: flex;
@@ -531,6 +534,8 @@ font-weight: bold;
   column-gap: 0.7rem;
   transition: 0.4s;
 }
+
+/* Footer */
 
 .footer {
   background: var(--text-color);

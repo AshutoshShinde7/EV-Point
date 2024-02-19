@@ -36,6 +36,7 @@ window.addEventListener("scroll", () => {
 });
 
 // Slider
+
 console.log("Before Swiper Initialization");
 var swiper = new Swiper(".vehicle-slider", {
   slidesPerView: 1,

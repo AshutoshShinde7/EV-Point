@@ -181,19 +181,21 @@ if (isset($_SESSION["user"])) {
     </section>
 
     <!-- About Section -->
-    <Section class="about container" id="about">
-        <div class="about-img">
-            <img src="img/about2.png" alt="">
-        </div>
-        <div class="about-text">
-            <span>About Us</span>
-            <h2>Cheap prices with <br>Quality EV Cars</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium iure quam rerum a. Obcaecati,
-                soluta.</p>
-            <!-- About Button  -->
-            <a href="parts_sell_form.php" class="btn">Learn More</a>
-        </div>
-    </Section>
+    <article class="abt">
+        <Section class="about container" id="about">
+            <div class="about-img">
+                <img src="img/about2.png" alt="">
+            </div>
+            <div class="about-text">
+                <span>About Us</span>
+                <h2>Cheap prices with <br>Quality EV Cars</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium iure quam rerum a. Obcaecati,
+                    soluta.</p>
+                <!-- About Button  -->
+                <a href="parts_sell_form.php" class="btn">Learn More</a>
+            </div>
+        </Section>
+    </article>
     <!-- Parts Section -->
 
     <style>
@@ -231,7 +233,9 @@ if (isset($_SESSION["user"])) {
                     <h3>
                         <?php echo $data['p_name']; ?>
                     </h3>
-                    <span>₹<?php echo $data['p_price']; ?></span>
+                    <span>₹
+                        <?php echo $data['p_price']; ?>
+                    </span>
                     <i class='bx bxs-star'>6 Reviews</i>
                     <form action="order.php?id=<?php echo $data['ID']; ?>" method="post">
                         <div class="q">
