@@ -1,6 +1,6 @@
 <?php
 if (isset($_GET['id'])) {
-include("connect.php");
+include("../connect.php");
 $id = $_GET['id'];
 $sql = "DELETE FROM cars WHERE id='$id'";
 if(mysqli_query($conn,$sql)){

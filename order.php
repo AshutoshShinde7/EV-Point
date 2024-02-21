@@ -2,7 +2,6 @@
 
 session_start();
 
-
 include 'connect.php';
 
 if (isset($_GET['id'])) {
@@ -23,12 +22,6 @@ if (isset($_GET['id'])) {
 
 $pquantity = $_POST['quantity'];
 echo $pquantity;
-
-// function updateProductQuantity($id, $pquantity, $conn)
-// {
-//     $updateQuery = "UPDATE parts SET p_quantity = p_quantity - $pquantity WHERE ID = $id";
-//     mysqli_query($conn, $updateQuery);
-// }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $pquantity = $_POST['quantity'];

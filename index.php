@@ -18,6 +18,7 @@ if (isset($_SESSION["user"])) {
     header("Location: index.php");
 }
 
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,6 +39,8 @@ if (isset($_SESSION["user"])) {
 </head>
 
 <body>
+    
+
     <!-- Navbar -->
     <header>
         <!-- Navbar Container -->
@@ -172,7 +175,7 @@ if (isset($_SESSION["user"])) {
                     <div class="price">₹
                         <?php echo $data['Price']; ?> Lakh
                     </div>
-                    <a href="booking.php" class="btn">check out</a>
+                    <a href="booking.php?id=<?php echo $data['ID']; ?>" class="btn">check out</a>
                 </div>
                 <?php
             }
@@ -240,7 +243,7 @@ if (isset($_SESSION["user"])) {
                     <form action="order.php?id=<?php echo $data['ID']; ?>" method="post">
                         <div class="q">
                             <label class="lab">Qantity : </label>
-                            <input type="number" id="myInput" name="quantity" value="1">
+                            <input type="number" id="myInput" name="quantity" min="1" step="1" value="1">
                         </div>
                         <button type="submit" id="parts" class="btn">Buy Now</button>
                     </form>

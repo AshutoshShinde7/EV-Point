@@ -9,4 +9,3 @@
     if (!$conn) {
         die("Somthing went Wrong");
     }
-    ?>

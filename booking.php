@@ -4,23 +4,50 @@ session_start();
 
 include 'connect.php';
 
+$uid = $_SESSION['user_id'];
+// echo $uid;
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $sql = "SELECT * FROM cars WHERE ID = '$id'";
+
+    $result = mysqli_query($conn, $sql);
+    $data = mysqli_fetch_array($result);
+
+    $cname = $data['Title'];
+
+} else {
+    $_SESSION['alert_message'] = "Error: Car not Found.";
+}
+
 if (isset($_POST['submit'])) {
 
-    $fname = $_POST['f-name'];
-    $lname = $_POST['l-name'];
-    $email = $_POST['email'];
-    $contact = $_POST['contact'];
-    $gender = $_POST['gender'];
-    $date = $_POST['date'];
-    $cname = $_POST['car-name'];
-    if (empty($fname) || empty($lname) || empty($email) || empty($contact) || empty($gender) || empty($date) || empty($cname)) {
-        die("Error: All fields are required.");
+    $fname = mysqli_real_escape_string($conn, $_POST['f-name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $contact = mysqli_real_escape_string($conn, $_POST['contact']);
+    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $cname = mysqli_real_escape_string($conn, $_POST['car-name']);
+    $address = mysqli_real_escape_string($conn, $_POST['address']);
+
+    if (empty($fname) || empty($email) || empty($contact) || empty($date) || empty($cname) || empty($address)) {
+        $_SESSION['alert_message'] = "Error: All fields are required.";
     } else {
-        $insert = "INSERT INTO `booking_details` (`First Name`, `Last Name`, `Email`, `Contact`, `Gender`, `Booking Date`, `Car Name`) VALUES ('$fname', '$lname', '$email', '$contact', '$gender', '$date', '$cname')";
-        mysqli_query($conn, $insert);
-        header('location: index.php');
+        $insert = $conn->prepare("INSERT INTO `booking_details` (`First Name`, `Email`, `Contact`, `Gender`, `Booking Date`, `Car Name`, `Address`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $insert->bind_param("sssssss", $fname, $email, $contact, $gender, $date, $cname, $address);
+        if ($insert->execute()) {
+            $_SESSION['alert_message'] = "Booking successful!";
+        } else {
+            $_SESSION['alert_message'] = "Error: Unable to process booking.";
+        }
+        $insert->close();
     }
+
+    header('location: index.php');
+    exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,8 +57,6 @@ if (isset($_POST['submit'])) {
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Booking Form</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
-    <!-- <script src='main.js'></script> -->
     <style>
         * {
             font-family: sans-serif;
@@ -89,6 +114,17 @@ if (isset($_POST['submit'])) {
             background: #fff;
         }
 
+        .form-container form .text-box {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 17px;
+            margin: 8px 0;
+            background: #eee;
+            border-radius: 5px;
+            resize: none;
+            overflow: hidden;
+        }
+
         .form-container form .form-btn {
             background: var(--main-color);
             color: var(--bg-color);
@@ -116,7 +152,7 @@ if (isset($_POST['submit'])) {
 
 <body>
     <div class="form-container">
-        <form method="post" action="index.php">
+        <form method="post">
             <h2>Book Your Test drive</h2>
             <?php
             if (isset($error)) {
@@ -126,19 +162,24 @@ if (isset($_POST['submit'])) {
                 ;
             }
             ;
+            $get = "SELECT * FROM users WHERE ID = '$uid'";
+            $result = mysqli_query($conn, $get);
+            $data = mysqli_fetch_array($result);
+
             ?>
-            <input type="text" name="f-name" placeholder="Enter Your First Name">
-            <input type="text" name="l-name" placeholder="Enter Your Last Name">
-            <input type="email" name="email" placeholder="Enter Your Email">
-            <input type="number" name="contact" placeholder="Enter Your Contact No.">
-            <label for="date">Select Gneder : </label>
+            <input type="text" name="f-name" value="<?php echo $data['Name']; ?>">
+            <!-- <input type="text" name="l-name" placeholder="Enter Your Last Name"> -->
+            <input type="email" name="email" value="<?php echo $data['Email']; ?>" >
+            <input type="number" name="contact" value="<?php echo $data['Contact']; ?>">
+            <label for="gender">Select Gneder : </label>
             <select name="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select>
             <label for="date">Book the date : </label>
             <input type="date" name="date">
-            <input type="text" name="car-name" placeholder="Enter the car name that you wanna Test Drive">
+            <input type="text" name="car-name" value="<?php echo $cname; ?>" readonly>
+            <textarea type="text" name="address" rows="3" class="text-box" placeholder="Enter Your Address"></textarea><br>
             <input type="submit" name="submit" value="Book now" class="form-btn">
     </div>
 </body>

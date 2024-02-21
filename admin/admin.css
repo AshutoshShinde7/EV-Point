@@ -1,193 +1,193 @@
 :root {
-    --yellow: #f9d806;
-    --light-yellow: #ffee80;
-    --black: #130f40;
-    --light-color: #666;
-    --border: 0.1rem solid rgba(0, 0, 0, 0.1);
-    --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    --main-color: #ffa500;
-    --text-color: #020102;
-    --bg-color: #fff;
-  }
+  --yellow: #f9d806;
+  --light-yellow: #ffee80;
+  --black: #130f40;
+  --light-color: #666;
+  --border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  --main-color: #ffa500;
+  --text-color: #020102;
+  --bg-color: #fff;
+}
 
 * {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-    text-decoration: none;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
 }
 
 .base .container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    padding-bottom: 60px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  padding-bottom: 60px;
 }
 
 .base .container .content .button {
-    text-align: center;
-    display: flex;
-    gap:  15px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  text-align: center;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.base .container .content h2{
-    color: #333;
-    font-size: 30px;
-    text-transform: capitalize;
+.base .container .content h2 {
+  color: #333;
+  font-size: 30px;
+  text-transform: capitalize;
 }
 
 .base .container .content h2 span {
-    background: var(--main-color);
-    color: #fff;
-    border-radius: 5px;
-    padding: 0 15px;  
-    font-weight: bolder;  
+  background: var(--main-color);
+  color: #fff;
+  border-radius: 5px;
+  padding: 0 15px;
+  font-weight: bolder;
 }
 
 .base .container .content h1 {
-   text-align: center;
-   text-transform: capitalize;
+  text-align: center;
+  text-transform: capitalize;
 }
 .base .container .content h1 span {
-   color: var(--main-color);
-   text-transform: capitalize;
-   font-weight: bolder;  
+  color: var(--main-color);
+  text-transform: capitalize;
+  font-weight: bolder;
 }
 
 .base .container .content p {
-    font-size: 25px;
-    margin-bottom: 20px;
-    text-align: center;
+  font-size: 25px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .base .container .content .btn {
-    display: inline-block;
-    padding: 10px 30px;
-    font-size: 20px;
-    background: #333;
-    color: #fff;
-    margin: 0 5px;
-    text-transform: capitalize;
+  display: inline-block;
+  padding: 10px 30px;
+  font-size: 20px;
+  background: #333;
+  color: #fff;
+  margin: 0 5px;
+  text-transform: capitalize;
 }
 
 .base .container .content .btn:hover {
-    background: var(--main-color);
+  background: var(--main-color);
 }
 
 /* reg form css */
 
 .form-container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    padding-bottom: 60px;
-    background: #f5e6da;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  padding-bottom: 60px;
+  background: #f5e6da;
 }
 
 .form-container form {
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: var(--box-shadow);
-    background: #fff;
-    text-align: center;
-    width: 550px;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  background: #fff;
+  text-align: center;
+  width: 550px;
 }
 
 .form-container form h3 {
-    font-size: 30px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    color: #333;
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .form-container form input,
-.form-container form select{
-   width: 100%;
-   padding:10px 15px;
-   font-size: 17px;
-   margin:8px 0;
-   background: #eee;
-   border-radius: 5px;
+.form-container form select {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 17px;
+  margin: 8px 0;
+  background: #eee;
+  border-radius: 5px;
 }
 
-.form-container form select option{
-   background: #fff;
+.form-container form select option {
+  background: #fff;
 }
 
-.form-container form .form-btn{
-   background: var(--main-color);
-   color:var(--bg-color);
-   text-transform: capitalize;
-   font-size: 20px;
-   cursor: pointer;
+.form-container form .form-btn {
+  background: var(--main-color);
+  color: var(--bg-color);
+  text-transform: capitalize;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-.form-container form .form-btn:hover{
-   background: #f1b545;
-   color:#fff;
+.form-container form .form-btn:hover {
+  background: #f1b545;
+  color: #fff;
 }
 
-.form-container form p{
-   margin-top: 10px;
-   font-size: 20px;
-   color:#333;
-   text-transform: capitalize;
+.form-container form p {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #333;
+  text-transform: capitalize;
 }
 
-.form-container form p a{
-   color:var(--main-color);
+.form-container form p a {
+  color: var(--main-color);
 }
 
-.form-container form .error-msg{
-   margin:10px 0;
-   display: block;
-   background: crimson;
-   color:#fff;
-   border-radius: 5px;
-   text-transform: capitalize;
-   font-size: 20px;
-   padding:10px;
+.form-container form .error-msg {
+  margin: 10px 0;
+  display: block;
+  background: crimson;
+  color: #fff;
+  border-radius: 5px;
+  text-transform: capitalize;
+  font-size: 20px;
+  padding: 10px;
 }
 
 #add_car header {
-    background: #f5e6da;
-    /* border: 2px solid red; */
- }
+  background: #f5e6da;
+  /* border: 2px solid red; */
+}
 
- h2 {
-    text-align: center;
-    color: #333;
- }
+h2 {
+  text-align: center;
+  color: #333;
+}
 
- table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
- }
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
 
- table,
- th,
- td {
-    border: 1px solid #ddd;
- }
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
 
- th,
- td {
-    padding: 10px;
-    text-align: left;
- }
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
 
- th {
-    background-color: #ffa500;
-    color: white;
- }  
+table tr th {
+  background-color: var(--main-color);
+  color: white;
+}
