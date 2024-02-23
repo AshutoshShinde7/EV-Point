@@ -39,7 +39,7 @@ if (isset($_SESSION["user"])) {
 </head>
 
 <body>
-    
+
 
     <!-- Navbar -->
     <header>
@@ -72,7 +72,7 @@ if (isset($_SESSION["user"])) {
                 </span>
             </h1>
             <h1>We Have Everything <br>Your <span>EV Car</span> Need</h1>
-            <p>Lorem ipsum dolor sit amet consectetur <br>adipisicing elit. Aut, enim.</p>
+            <p>Explore our wide range of accessories and essentials to enhance your<br> electric driving experience.Quality, convenience, and comfort, all in one place.</p>
             <!-- Home Button -->
             <a href="#vehicles" class="btn">Discover Now</a>
         </div>
@@ -192,8 +192,7 @@ if (isset($_SESSION["user"])) {
             <div class="about-text">
                 <span>About Us</span>
                 <h2>Cheap prices with <br>Quality EV Cars</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium iure quam rerum a. Obcaecati,
-                    soluta.</p>
+                <p>Affordable Excellence: Quality EV Cars at Unbeatable Prices! Discover your next ride today and experience the future of driving. Upgrade your journey with confidence and style..</p>
                 <!-- About Button  -->
                 <a href="parts_sell_form.php" class="btn">Learn More</a>
             </div>
@@ -221,10 +220,20 @@ if (isset($_SESSION["user"])) {
     <section class="parts" id="parts">
         <div class="heading">
             <span>What we Offer</span>
-            <h2>Our Car is always Excellent</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, optio?</p>
+            <h2>Upgrade your ride, upgrade your impact</h2>
+            <p>Enhance your electric experience with our premium accessories</p>
         </div>
         <!-- Parts Container  -->
+        <?php
+        $checkq = "SELECT * FROM parts WHERE 'p_quantity' = 0";
+        $output = mysqli_query($conn, $checkq);
+        if ($output && mysqli_num_rows($output) > 0) {
+            $productAvailability = "Unavailable"; // Set product availability
+        } else {
+            $productAvailability = "Available"; // Set product availability
+        }
+        ?>
+
         <div class="parts-container container">
             <?php
             $sqlSelect = "SELECT * FROM parts";
@@ -245,7 +254,7 @@ if (isset($_SESSION["user"])) {
                             <label class="lab">Qantity : </label>
                             <input type="number" id="myInput" name="quantity" min="1" step="1" value="1">
                         </div>
-                        <button type="submit" id="parts" class="btn">Buy Now</button>
+                        <button type="submit" class="parts-btn btn">Buy Now</button>
                     </form>
                 </div>
                 <?php
@@ -253,6 +262,16 @@ if (isset($_SESSION["user"])) {
             ?>
         </div>
     </section>
+    <!-- <script>
+        var productAvailability = "<?php echo $productAvailability; ?>";
+
+        if (productAvailability === "Unavailable") {
+            var buttons = document.getElementsByClassName("parts-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = true;
+            }
+        }
+    </script> -->
     <!-- Blog Section -->
     <section class="blog" id="blog">
         <div class="heading">

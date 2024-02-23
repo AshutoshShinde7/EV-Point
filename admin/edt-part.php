@@ -115,62 +115,45 @@ include '../connect.php';
 
 <body>
     <header>
-        <h1>Add New Car</h1>
+        <h1>Add New Part</h1>
         <div>
             <a href="add-car.php" class="form-btn">Back</a>
         </div>
     </header>
     <div class="form-container">
-        <form action="e-prc.php" method="post" enctype="multipart/form-data">
+        <form action="e-part.php" method="post" enctype="multipart/form-data">
             <?php
 
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-                $sql = "SELECT * FROM cars WHERE ID=$id";
+                $sql = "SELECT * FROM parts WHERE ID=$id";
                 $result = mysqli_query($conn, $sql);
-                $row = mysqli_fetch_array($result);
+                $data = mysqli_fetch_array($result);
                 ?>
                 <input type="hidden" value="<?php echo $id; ?>" name="id">
-                <div>
-                    <!-- <input type="file" name="image" placeholder="Car Image :"
-                        value="<?php echo $row["Image"]; ?>"> -->
 
+                <div>
                     <input type="file" name="image" value="<?php echo $row['Image'] ?>">
                     <img src="<?php echo $row['Image'] ?>" width='300px' height='150px' alt="">
-                    <input type="hidden" name="Id" value="<?php echo $data['Id'] ?>">
-
+                    <input type="hidden" name="Id" value="<?php echo $data['ID'] ?>">
                 </div>
                 <div>
-                    <input type="text" name="title" placeholder="Car Name :" value="<?php echo $row["Title"]; ?>">
+                    <input type="text" value="<?php echo $data['p_name']; ?>"  name="p-name" placeholder="Name of the Part">
                 </div>
                 <div>
-                    <input type="number" name="price" placeholder="Car Price :" value="<?php echo $row["Price"]; ?>">
+                    <input type="number" value="<?php echo $data['p_price']; ?>" name="p-price" placeholder="Price of the Part">
                 </div>
                 <div>
-                    <input type="number" class="form-control" name="year" placeholder="Model Year" value="<?php echo $row["Model-Year"]; ?>">
+                    <input type="number" value="<?php echo $data['p_quantity']; ?>" name="p-quantity" placeholder="Enter the Quantity">
                 </div>
+                
                 <div>
-                    <select name="Transmission" id="" class="form-control" value="<?php echo $row["Transmission"]; ?>">
-                        <option name="auto" value="Automatic">Automatic</option>
-                        <option name="manual" value="Manual">Manual</option>
-                    </select>
-                </div>
-                <div>
-                    <select name="type" id="" class="form-control" value="<?php echo $row["Fuel Type"]; ?>">
-                        <option name="ev" value="Electric">Electric</option>
-                        <option name="hy" value="Hybrid">Hybrid</option>
-                    </select>
-                </div>
-                <div>
-                    <input type="number" class="form-control" name="speed" placeholder="Top Speed" value="<?php echo $row["Speed"]; ?>">
-                </div>
-                <div>
-                    <button type="submit" name="update" value="Edit Car" class="form-btn" style="width:100%">Edit
-                        Car</button>
+                    <button type="submit" name="edt" value="Edit Car" class="form-btn" style="width:100%">Edit
+                        Part</button>
                 </div>
                 <?php
             } else {
-                echo "<h3>Car Does Not Exist</h3>";
+                echo "<h3>Part Does Not Exist</h3>";
             }
             ?>
 

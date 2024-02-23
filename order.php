@@ -14,18 +14,18 @@ if (isset($_GET['id'])) {
 
     $pname = $data['p_name'];
     $pprice = $data['p_price'];
-    $dcharge = 50;
+    $dcharge = 150;
     $pimg = $data['Image'];
 } else {
     echo "No Product found";
 }
 
 $pquantity = $_POST['quantity'];
-echo $pquantity;
+// echo $pquantity;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-    $pquantity = $_POST['quantity'];
-
+    $pquantity = $_POST['quantity'];    
+    $oid = $_POST['id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $contact = $_POST['contact'];
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (empty($email) || empty($contact) || empty($name) || empty($address)) {
         die("Error: All fields are required.");
     } else {
-        $insert = "INSERT INTO `parts_sells` (`Part Name`, `Part Price`, `Quantity`, `Email`, `Name`, `Contact`, `Address`) VALUES ('$pname', '$pprice', '$pquantity', '$email', '$name', '$contact', '$address')";
+        $insert = "INSERT INTO `parts_sells` (`ID`, `Part Name`, `Part Price`, `Quantity`, `Email`, `Name`, `Contact`, `Address`) VALUES ('$oid', '$pname', '$pprice', '$pquantity', '$email', '$name', '$contact', '$address')";
         mysqli_query($conn, $insert);
 
         $updateQuery = "UPDATE parts SET p_quantity = p_quantity - ? WHERE ID = ?";
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         mysqli_stmt_bind_param($stmt, "ii", $pquantity, $id);
         mysqli_stmt_execute($stmt);
         $_SESSION['alert_message'] = "Payment successful!";
-        header('Location:index.php');
+        // header('Location:index.php');
     }
 }
 
@@ -56,12 +56,13 @@ $t_price = $tprice * $pquantity;
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Order</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='order.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' media='screen' href='order.css'>
     <style>
         * {
-            font-family: sans-serif;
+            font-family: "Jost", sans-serif;
+            /* font-family: sans-serif; */
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -76,17 +77,61 @@ $t_price = $tprice * $pquantity;
             --bg-color: #fff;
         }
 
-        .sec .form-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            padding-bottom: 60px;
+        .order_details {
             background: #f5e6da;
         }
 
-        .sec .form-container form {
+        .order_details h2 {
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            padding-top: 40px;
+            /* margin-bottom: -80px; */
+        }
+
+        .card-info {
+            /* max-height: 100vh; */
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .box-img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            object-position: center;
+            margin-bottom: 1rem;
+        }
+
+        .amount {
+            font-weight: bolder;
+        }
+
+        .card h3 {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .card h4 {
+            font-weight: bold;
+        }
+
+        .p-info,
+        .form-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            /* justify-content: center; */
+        }
+
+        @media (max-width: 970px) {
+            .card-info {
+                flex-wrap: wrap;
+            }
+        }
+
+        .form-container form,
+        .card-info .p-info .card {
             padding: 50px;
             border-radius: 20px;
             box-shadow: var(--box-shadow);
@@ -95,15 +140,15 @@ $t_price = $tprice * $pquantity;
             max-width: 550px;
         }
 
-        .sec .form-container form h2 {
+        .form-container form h2 {
             font-size: 30px;
             text-transform: uppercase;
             margin-bottom: 10px;
             color: #333;
         }
 
-        .sec .form-container form input,
-        .sec .form-container form select {
+        .form-container form input,
+        .form-container form select {
             width: 100%;
             padding: 10px 15px;
             font-size: 17px;
@@ -112,11 +157,14 @@ $t_price = $tprice * $pquantity;
             border-radius: 5px;
         }
 
-        .sec .form-container form select option {
+        .form-container form select option {
             background: #fff;
         }
 
-        .sec .form-container form .form-btn {
+        .form-container form .form-btn {
+            padding: 10px 15px;
+            border-radius: 5px;
+            width: 100%;
             background: var(--main-color);
             color: var(--bg-color);
             text-transform: capitalize;
@@ -124,12 +172,12 @@ $t_price = $tprice * $pquantity;
             cursor: pointer;
         }
 
-        .sec .form-container form .form-btn:hover {
+        .form-container form .form-btn:hover {
             background: #f1b545;
             color: #fff;
         }
 
-        .sec .form-container form .error-msg {
+        .form-container form .error-msg {
             margin: 10px 0;
             display: block;
             background: rgb(249, 154, 173);
@@ -138,71 +186,73 @@ $t_price = $tprice * $pquantity;
             font-size: 20px;
             padding: 10px;
         }
+
+        .form-container form .text-box {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 17px;
+            margin: 8px 0;
+            background: #eee;
+            border-radius: 5px;
+            resize: none;
+            overflow: hidden;
+        }
     </style>
 </head>
 
 <body>
-    <section class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10 mb-5">
-                <h2 class="text-center p-2 text-primary">Fill the details to complete your order</h2>
-                <h3>Product Deatails</h3>
-                <table class="table table-bordered" width="" 500px>
-                    <tr>
-                        <th>Product Name : </th>
-                        <td>
-                            <?php echo $pname; ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Product Price : </th>
-                        <td>₹
-                            <?php echo $pprice; ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Product Quantity : </th>
-                        <td>
+    <section class="order_details">
+        <h2>Fill the details to complete your order</h2>
+        <div class="card-info">
+            <div class="p-info">
+                <div class="card">
+                    <?php echo "<img class='box-img' src='img/" . basename($pimg) . "' alt='Car Image'><br>" ?>
+                    <h3>
+                        <?php echo $pname; ?>
+                    </h3>
+                    <h4>
+                        ₹
+                        <?php echo $pprice; ?>
+                    </h4>
+                    <hr>
+                    <div class="pricing">
+                        <div>
+                            <span>Quantity:</span>
                             <?php echo $pquantity; ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Delivery Charge : </th>
-                        <td>₹
+                        </div>
+                        <div>
+                            <span>Delivery Charge : </span>₹
                             <?php echo $dcharge; ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Amount to Pay : </th>
-                        <td>₹
+                        </div>
+                        <div class="amount">
+                            <span>Amount to Pay : </span>₹
                             <?php echo $t_price; ?>
-                        </td>
-                    </tr>
-                </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-    <section class="sec">
-        <div class="form-container">
-            <span class="fas fa-times" id="close-login-form"></span>
-            <form action="" method="post">
-                <h3>Buy Now</h3>
-                <?php
-                if (isset($error)) {
-                    foreach ($error as $error) {
-                        echo '<span class="error-msg">' . $error . '</span>';
+            <div class="form-container">
+                <span class="fas fa-times" id="close-login-form"></span>
+                <form action="pay.php?id=<?php echo $oid; ?>" method="post">
+                    <h3>Buy Now</h3>
+                    <?php
+                    if (isset($error)) {
+                        foreach ($error as $error) {
+                            echo '<span class="error-msg">' . $error . '</span>';
+                        }
+                        ;
                     }
                     ;
-                }
-                ;
-                ?>
-                <input type="number" name="quantity" value="<?php echo $pquantity; ?>" hidden>
-                <input type="text" name="name" required placeholder="Enter your Name" class="box">
-                <input type="email" name="email" placeholder="Enter your Email" required class="box">
-                <input type="number" name="contact" required placeholder="Enter your Contact Number" class="box">
-                <input type="text" name="address" required placeholder="Enter your Address" class="box">
-                <input type="submit" name="submit" value="Pay Now" class="form-btn">
-            </form>
+                    ?>
+                    <input type="number" name="id" autocomplete="on" hidden>
+                    <input type="number" name="quantity" value="<?php echo $pquantity; ?>" hidden>
+                    <input type="text" name="name" required placeholder="Enter your Name" class="box">
+                    <input type="email" name="email" placeholder="Enter your Email" required class="box">
+                    <input type="number" name="contact" required placeholder="Enter your Contact Number" class="box">
+                    <textarea type="text" name="address" rows="3" required placeholder="Enter your Address" class="text-box"></textarea>
+                    <button type="submit" name="submit" value="Pay Now" class="form-btn">Pay Now</button>
+                </form>
+            </div>
         </div>
     </section>
 </body>

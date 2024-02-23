@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="admin.css">
 <style>
    h2 {
-      /* text-align: center; */
       color: #333;
    }
 

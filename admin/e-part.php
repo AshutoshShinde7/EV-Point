@@ -1,14 +1,11 @@
 <?php
-if (isset($_POST['update'])) {
+if (isset($_POST['edt'])) {
     include '../connect.php';
 
     $id = mysqli_real_escape_string($conn, $_POST["id"]);
-    $NAME = mysqli_real_escape_string($conn, $_POST['title']);
-    $PRICE = mysqli_real_escape_string($conn, $_POST['price']);
-    $YEAR = mysqli_real_escape_string($conn, $_POST['year']);
-    $transmission = mysqli_real_escape_string($conn, $_POST['Transmission']);
-    $type = mysqli_real_escape_string($conn, $_POST['type']);
-    $speed = mysqli_real_escape_string($conn, $_POST['speed']);
+    $NAME = mysqli_real_escape_string($conn, $_POST['p_name']);
+    $PRICE = mysqli_real_escape_string($conn, $_POST['p_price']);
+    $QUANTITY = mysqli_real_escape_string($conn, $_POST['p_quantity']);
 
     if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $img_loc = $_FILES['image']['tmp_name'];
@@ -17,10 +14,10 @@ if (isset($_POST['update'])) {
         $_SESSION['alert_message'] = "I AM HERE";
 
         if (move_uploaded_file($img_loc, '../img/' . $img_name)) {
-            $sqlUpdate = "UPDATE cars SET Title = '$NAME', Price = '$PRICE', Image = '$img_des', Model-Year = '$YEAR', Transmission = '$transmission', Fuel Type = '$type', Speed = '$speed'  WHERE ID = '$id'";
+            $sqlUpdate = "UPDATE parts SET p_name = '$NAME', p_price = '$PRICE', Image = '$img_des', p_quantityr = '$QUANTITY' WHERE ID = '$id'";
             if (mysqli_query($conn, $sqlUpdate)) {
                 $_SESSION['alert_message'] = "Successfully Updated";
-                header("location: add-car.php");
+                header("location: add-parts.php");
                 exit();
             } else {
                 $_SESSION['alert_message'] = "Error updating record: " . mysqli_error($conn);

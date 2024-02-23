@@ -76,7 +76,7 @@
 </style>
 <section id="add_part">
    <header>
-      <h1>Add New Car</h1>
+      <h1>Add New Part</h1>
       <div>
          <a href="admin.php" class="form-btn">Back</a>
       </div>
@@ -96,25 +96,7 @@
          <div class="form-elemnt my-4">
             <input type="number" class="form-control" name="p-quantity" placeholder="Enter the Quantity">
          </div>
-         <!-- <div class="form-elemnt my-4">
-            <input type="number" class="form-control" name="year" placeholder="Model Year">
-         </div>
-         <div class="form-elemnt my-4">
-            <input type="text" class="form-control" name="Transmission" placeholder="Transmission">
-         </div> -->
-         <!-- <div class="form-elemnt my-4">
-            <input type="text" class="form-control" name="price" placeholder="Fuel Type">
-         </div> -->
-         <!-- <div class="form-elemnt my-4">
-            <select name="type" id="" class="form-control">
-               <option name="ev" value="Electric">Electric</option>
-               <option name="hy" value="Hybrid">Hybrid</option>
-            </select>
-         </div>
-         <div class="form-elemnt my-4">
-            <input type="number" class="form-control" name="speed" placeholder="Top Speed">
-         </div> -->
-
+         
          <div class="">
             <input type="submit" name="add" value="Add Car" class="form-btn">
          </div>
@@ -144,15 +126,15 @@
       }
       ?>
       <?php
-      if (isset($_SESSION["update"])) {
+      if (isset($_SESSION["edt"])) {
          ?>
          <div class="alert alert-success">
             <?php
-            echo $_SESSION["update"];
+            echo $_SESSION["edt"];
             ?>
          </div>
          <?php
-         unset($_SESSION["update"]);
+         unset($_SESSION["edt"]);
       }
       ?>
       <?php
@@ -200,7 +182,7 @@
                   <?php echo "<img class='box-img' src='../img/" . basename($data['Image']) . "' alt='Car Image'><br>" ?>
                </td>
                <td>
-                  <a href="edit.php?id=<?php echo $data['ID']; ?>" class="btn btn-warning">Edit</a>
+                  <a href="edt-part.php?id=<?php echo $data['ID']; ?>" class="btn btn-warning">Edit</a>
                   <a href="delete.php?id=<?php echo $data['ID']; ?>" class="btn btn-danger">Delete</a>
                </td>
             </tr>
