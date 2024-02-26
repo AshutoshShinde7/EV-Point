@@ -19,12 +19,14 @@ if (isset($_GET['id'])) {
 } else {
     echo "No Product found";
 }
-
 $pquantity = $_POST['quantity'];
+$tprice = $pprice + $dcharge;
+$t_price = $tprice * $pquantity;
+// echo $t_price;
 // echo $pquantity;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-    $pquantity = $_POST['quantity'];    
+    $pquantity = $_POST['quantity'];
     $oid = $_POST['id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -33,20 +35,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (empty($email) || empty($contact) || empty($name) || empty($address)) {
         die("Error: All fields are required.");
     } else {
-        $insert = "INSERT INTO `parts_sells` (`ID`, `Part Name`, `Part Price`, `Quantity`, `Email`, `Name`, `Contact`, `Address`) VALUES ('$oid', '$pname', '$pprice', '$pquantity', '$email', '$name', '$contact', '$address')";
+        // $_SESSION['alert_message'] = "ID".$oid;
+
+        $insert = "INSERT INTO `parts_sells` (`ID`, `Part Name`, `Part Price`,`Total`, `Quantity`, `Email`, `Name`, `Contact`, `Address`) VALUES ('$oid', '$pname', '$pprice','$t_price', '$pquantity', '$email', '$name', '$contact', '$address')";
         mysqli_query($conn, $insert);
+
+        $i_id = mysqli_insert_id($conn);
 
         $updateQuery = "UPDATE parts SET p_quantity = p_quantity - ? WHERE ID = ?";
         $stmt = mysqli_prepare($conn, $updateQuery);
         mysqli_stmt_bind_param($stmt, "ii", $pquantity, $id);
         mysqli_stmt_execute($stmt);
+        header('Location:pay.php?id=' . $i_id);
         $_SESSION['alert_message'] = "Payment successful!";
-        // header('Location:index.php');
     }
 }
 
-$tprice = $pprice + $dcharge;
-$t_price = $tprice * $pquantity;
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,7 +62,6 @@ $t_price = $tprice * $pquantity;
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel='stylesheet' type='text/css' media='screen' href='order.css'>
     <style>
         * {
             font-family: "Jost", sans-serif;
@@ -233,7 +236,7 @@ $t_price = $tprice * $pquantity;
             </div>
             <div class="form-container">
                 <span class="fas fa-times" id="close-login-form"></span>
-                <form action="pay.php?id=<?php echo $oid; ?>" method="post">
+                <form action="" method="post">
                     <h3>Buy Now</h3>
                     <?php
                     if (isset($error)) {
@@ -244,12 +247,13 @@ $t_price = $tprice * $pquantity;
                     }
                     ;
                     ?>
-                    <input type="number" name="id" autocomplete="on" hidden>
+                    <input type="number" name="id" hidden>
                     <input type="number" name="quantity" value="<?php echo $pquantity; ?>" hidden>
                     <input type="text" name="name" required placeholder="Enter your Name" class="box">
                     <input type="email" name="email" placeholder="Enter your Email" required class="box">
                     <input type="number" name="contact" required placeholder="Enter your Contact Number" class="box">
-                    <textarea type="text" name="address" rows="3" required placeholder="Enter your Address" class="text-box"></textarea>
+                    <textarea type="text" name="address" rows="3" required placeholder="Enter your Address"
+                        class="text-box"></textarea>
                     <button type="submit" name="submit" value="Pay Now" class="form-btn">Pay Now</button>
                 </form>
             </div>
