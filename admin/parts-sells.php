@@ -6,11 +6,11 @@
       border-collapse: collapse;
    }
 
-   table,
+   /* table,
    th,
    td {
       border: 1px solid #ddd;
-   }
+   } */
 
    th,
    td {

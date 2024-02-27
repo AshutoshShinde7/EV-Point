@@ -41,6 +41,12 @@
       background: #f1b545;
       color: #fff;
    }
+   .box-img {
+      height: 150px;
+      width: 150px;
+      aspect-ratio: 3/2;
+      object-fit: contain;
+   }
 </style>
 <section>
 
@@ -53,63 +59,29 @@
    if (mysqli_connect_errno()) {
       die("Failed to connect to MySQL: " . mysqli_connect_error());
    }
-   $query = "SELECT * FROM users WHERE user_type = 'user'";
+   $query = "SELECT * FROM parts";
    $result = mysqli_query($conn, $query);
    if (mysqli_num_rows($result) > 0) {
       echo "<table border='1'>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Contact</th>
-            <th>User Type</th>
+            <th>Part Name</th>
+            <th>Price</th>
+            <th>Quabtity</th>
+            <th>Image</th>
         </tr>";
       while ($row = mysqli_fetch_assoc($result)) {
          echo "<tr>
             <td>{$row['ID']}</td>
-            <td>{$row['Name']}</td>
-            <td>{$row['user_name']}</td>
-            <td>{$row['Email']}</td>
-            <td>{$row['Contact']}</td>
-            <td>{$row['user_type']}</td>
+            <td>{$row['p_name']}</td>
+            <td>{$row['p_price']}</td>
+            <td>{$row['p_quantity']}</td>
+            <td><img class='box-img' src='../img/" . basename($row['Image']) . "' alt='Car Image'><br></td>
         </tr>";
       }
       echo "</table>";
    } else {
       echo "No records found";
    } 
-   ?>
-   <div>
-      <h2>Admin Details</h2>
-      <!-- <a href="admin.php" class="form-btn">Back</a> -->
-   </div>
-   <?php
-   $query = "SELECT * FROM users WHERE user_type = 'admin'";
-   $result = mysqli_query($conn, $query);
-   if (mysqli_num_rows($result) > 0) {
-      echo "<table border='1'>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Contact</th>
-            <th>User Type</th>
-        </tr>";
-      while ($row = mysqli_fetch_assoc($result)) {
-         echo "<tr>
-            <td>{$row['ID']}</td>
-            <td>{$row['Name']}</td>
-            <td>{$row['user_name']}</td>
-            <td>{$row['Email']}</td>            
-            <td>{$row['Contact']}</td>
-            <td>{$row['user_type']}</td>
-        </tr>";
-      }
-      echo "</table>";
-   } else {
-      echo "No records found";
-   }
    ?>
 </section>

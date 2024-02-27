@@ -11,12 +11,6 @@
       border-collapse: collapse;
    }
 
-   table,
-   th,
-   td {
-      border: 1px solid #ddd;
-   }
-
    th,
    td {
       padding: 10px;

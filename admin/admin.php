@@ -22,11 +22,11 @@ if (!isset($_SESSION['admin_name'])) {
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
    <!-- custom css file link  -->
    <style>
-      .base .container content .button .log a{
+      .base .container content .button .log a {
          background: crimson;
       }
-      </style>
-      <link rel="stylesheet" href="admin.css">
+   </style>
+   <link rel="stylesheet" href="admin.css">
 </head>
 
 <body>
@@ -49,7 +49,9 @@ if (!isset($_SESSION['admin_name'])) {
                   <a href="add-parts.php" class="btn">Add Parts</a>
                </div>
                <div class="operation">
-               <a href="user_data.php" class="btn">Users</a>
+                  <a href="user_data.php" class="btn">Users</a>
+                  <a href="cars.php" class="btn">Cars</a>
+                  <a href="parts.php" class="btn">Parts</a>
                   <a href="bookings.php" class="btn">Test Drive Bookings</a>
                   <a href="parts-sells.php" class="btn">Parts Sells</a>
                   <a href="feedback-d.php" class="btn">Feedbacks</a>

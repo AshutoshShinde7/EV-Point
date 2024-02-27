@@ -6,11 +6,10 @@
       border-collapse: collapse;
    }
 
-   table,
-   th,
+   /* th,
    td {
-      border: 1px solid #ddd;
-   }
+      border-bottom: 1px solid #ddd;
+   } */
 
    th,
    td {
@@ -61,6 +60,11 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>Contact</th>
+            <th>Gender</th>
+            <th>Booking Date</th>
+            <th>Car Name</th>
+            <th>Address</th>
         </tr>";
 
       while ($row = mysqli_fetch_assoc($result)) {
@@ -69,6 +73,11 @@
             <td>{$row['First Name']}</td>
             <td>{$row['Last Name']}</td>
             <td>{$row['Email']}</td>
+            <td>{$row['Contact']}</td>
+            <td>{$row['Gender']}</td>
+            <td>{$row['Booking Date']}</td>
+            <td>{$row['Car Name']}</td>
+            <td>{$row['Address']}</td>
         </tr>";
       }
 
