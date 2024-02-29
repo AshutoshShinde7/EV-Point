@@ -9,7 +9,7 @@ if(isset($_POST['submit'])){
    $pass = $_POST['password'];
    $cpass = $_POST['cpassword'];
    $user_type = $_POST['user_type'];
-   $select = " SELECT * FROM users WHERE Email = '$email' && Password = '$pass' && user_name = '$u_name' ";
+   $select = " SELECT * FROM users WHERE Email = '$email' &&  `Password` = '$pass' && user_name = '$u_name' ";
    $result = mysqli_query($conn, $select);
    if(mysqli_num_rows($result) > 0){
       $error[] = 'user already exist!';
@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $error[] = 'password not matched!';
       }else{
-         $insert = "INSERT INTO users(Name, user_name, Email, Contact , Password, user_type) VALUES('$name','$u_name','$email','$contact','$pass','$user_type')";
+         $insert = "INSERT INTO users(`Name`, user_name, Email, Contact , `Password`, user_type) VALUES('$name','$u_name','$email','$contact','$pass','$user_type')";
          mysqli_query($conn, $insert);
          header('location:login.php');
       }

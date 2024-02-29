@@ -147,7 +147,7 @@ include '../connect.php';
                     <input type="number" name="price" placeholder="Car Price :" value="<?php echo $row["Price"]; ?>">
                 </div>
                 <div>
-                    <input type="number" class="form-control" name="year" placeholder="Model Year" value="<?php echo $row["Model-Year"]; ?>">
+                    <input type="number" class="form-control" name="year" placeholder="Model Year" value="<?php echo $row["ModelYear"]; ?>">
                 </div>
                 <div>
                     <select name="Transmission" id="" class="form-control" value="<?php echo $row["Transmission"]; ?>">

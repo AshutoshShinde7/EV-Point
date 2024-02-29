@@ -128,7 +128,7 @@ if (isset($_SESSION["user"])) {
                             <p>
                                 new
                                 <span class="fas fa-circle"></span>
-                                <?php echo $data['Model-Year']; ?>
+                                <?php echo $data['ModelYear']; ?>
                                 <span class="fas fa-circle"></span>
                                 <?php echo $data['Transmission']; ?>
                                 <span class="fas fa-circle"></span>
@@ -194,7 +194,7 @@ if (isset($_SESSION["user"])) {
                 <h2>Cheap prices with <br>Quality EV Cars</h2>
                 <p>Affordable Excellence: Quality EV Cars at Unbeatable Prices! Discover your next ride today and experience the future of driving. Upgrade your journey with confidence and style..</p>
                 <!-- About Button  -->
-                <a href="parts_sell_form.php" class="btn">Learn More</a>
+                <a href="#footer" class="btn">Learn More</a>
             </div>
         </Section>
     </article>
@@ -312,7 +312,7 @@ if (isset($_SESSION["user"])) {
         </div>
     </section>
     <!-- Fotter Section -->
-    <section class="footer">
+    <section class="footer" id="footer">
         <div class="footer-container container">
             <div class="footer-box">
                 <a href="#" class="logo">EV<span>Point</span></a>

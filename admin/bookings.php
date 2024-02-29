@@ -6,11 +6,6 @@
       border-collapse: collapse;
    }
 
-   /* th,
-   td {
-      border-bottom: 1px solid #ddd;
-   } */
-
    th,
    td {
       padding: 10px;
