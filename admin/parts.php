@@ -51,7 +51,7 @@
 <section>
 
    <div>
-      <h2>User Details</h2>
+      <h2>Parts Details</h2>
       <a href="admin.php" class="form-btn">Back</a>
    </div>
    <?php

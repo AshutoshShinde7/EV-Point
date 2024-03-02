@@ -16,10 +16,15 @@ if (isset($_GET['id'])) {
     $pprice = $data['p_price'];
     $dcharge = 150;
     $pimg = $data['Image'];
+    $oq = $data['p_quantity'];
 } else {
     echo "No Product found";
 }
 $pquantity = $_POST['quantity'];
+if ($pquantity > $oq) {
+    $_SESSION['alert_message'] = "Apologies for any confusion, but it appears that currently, we only have $oq $pname available";
+    header("Location: index.php");
+}
 $tprice = $pprice + $dcharge;
 $t_price = $tprice * $pquantity;
 // echo $t_price;

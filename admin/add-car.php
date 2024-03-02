@@ -176,7 +176,7 @@
             <th>Title</th>
             <th>Price</th>
             <th>Image</th>
-            <th>Buttons</th>
+            <th>Action</th>
          </tr>
          <?php
          include('../connect.php');

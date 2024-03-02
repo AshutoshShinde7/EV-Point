@@ -51,7 +51,7 @@
 <section>
 
    <div>
-      <h2>User Details</h2>
+      <h2>Cars Details</h2>
       <a href="admin.php" class="form-btn">Back</a>
    </div>
    <?php
@@ -79,7 +79,7 @@
             <td><img class='box-img' src='../img/" . basename($row['Image']) . "' alt='Car Image'><br></td>
             <td>{$row['Title']}</td>
             <td>{$row['Price']}</td>
-            <td>{$row['Model-Year']}</td>
+            <td>{$row['ModelYear']}</td>
             <td>{$row['Transmission']}</td>
             <td>{$row['Fuel Type']}</td>
             <td>{$row['Speed']}</td>

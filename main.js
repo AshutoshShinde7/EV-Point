@@ -10,6 +10,21 @@ menu.onclick = () => {
   navbar.classList.toggle("active");
 };
 
+var navbarItems = document.querySelectorAll(".nav a");
+
+navbarItems.forEach(function(navItem) {
+  navItem.addEventListener("click", function() {
+    navbarItems.forEach(function(item) {
+      item.classList.remove("active");
+    });
+    navItem.classList.add("active");
+    handleClick(navItem.textContent);
+  });
+});
+function handleClick(itemText) {
+  console.log("Clicked on:", itemText);
+}
+
 window.onscroll = () => {
   if (window.scrollY > 0) {
     document.querySelector(".nav").classList.add("active");

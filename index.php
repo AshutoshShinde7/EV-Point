@@ -51,12 +51,12 @@ if (isset($_SESSION["user"])) {
             <a href="#" class="logo">EV<span>Point</span></a>
             <!-- Nav List -->
             <ul class="navbar">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#vehicles">Cars</a></li>
-                <li><a href="#featured">Featured</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#parts">Parts</a></li>
-                <li><a href="#blog">Our Blog</a></li>
+                <li><a href="#home" class="active" onclick="handleClick('Home')">Home</a></li>
+                <li><a href="#vehicles" onclick="handleClick('vehicles')">Cars</a></li>
+                <li><a href="#featured" onclick="handleClick('featured')">Featured</a></li>
+                <li><a href="#about" onclick="handleClick('about')">About</a></li>
+                <li><a href="#parts" onclick="handleClick('parts')">Parts</a></li>
+                <li><a href="#blog" onclick="handleClick('blog')">Our Blog</a></li>
             </ul>
             <div class="s-l" id="login-btn">
                 <a href="logout.php" class="btn" id="login-btn--">LogOut</a>
@@ -215,6 +215,15 @@ if (isset($_SESSION["user"])) {
             max-width: 50px;
             text-align: center;
         }
+
+        .unavailable {
+            margin-top: 20px;
+            padding: 10px;
+            color: red;
+            font-size: 18px;
+            /* max-width: 100%; */
+            font-weight: bolder;
+        }
     </style>
 
     <section class="parts" id="parts">
@@ -224,21 +233,12 @@ if (isset($_SESSION["user"])) {
             <p>Enhance your electric experience with our premium accessories</p>
         </div>
         <!-- Parts Container  -->
-        <?php
-        $checkq = "SELECT * FROM parts WHERE 'p_quantity' = 0";
-        $output = mysqli_query($conn, $checkq);
-        if ($output && mysqli_num_rows($output) > 0) {
-            $productAvailability = "Unavailable"; // Set product availability
-        } else {
-            $productAvailability = "Available"; // Set product availability
-        }
-        ?>
-
         <div class="parts-container container">
             <?php
             $sqlSelect = "SELECT * FROM parts";
             $result = mysqli_query($conn, $sqlSelect);
             while ($data = mysqli_fetch_array($result)) {
+                $pq = $data['p_quantity'];
                 ?>
                 <div class="box">
                     <?php echo "<img class='box-img' src='img/" . basename($data['Image']) . "' alt='Car Image'><br>" ?>
@@ -249,6 +249,9 @@ if (isset($_SESSION["user"])) {
                         <?php echo $data['p_price']; ?>
                     </span>
                     <i class='bx bxs-star'>6 Reviews</i>
+                    <?php
+                        if($pq>0){
+                    ?>
                     <form action="order.php?id=<?php echo $data['ID']; ?>" method="post">
                         <div class="q">
                             <label class="lab">Qantity : </label>
@@ -256,6 +259,13 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <button type="submit" class="parts-btn btn">Buy Now</button>
                     </form>
+                    <?php
+                        }else{
+                    ?>
+                        <div class="unavailable">Out of Stock</div>
+                    <?php
+                        }
+                    ?>
                 </div>
                 <?php
             }

@@ -157,7 +157,7 @@
             <th>Part Price</th>
             <th>Part Quantity</th>
             <th>Part Image</th>
-            <th>Buttons</th>
+            <th>Action</th>
          </tr>
          <?php
          include('../connect.php');
