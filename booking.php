@@ -21,6 +21,7 @@ if (isset($_GET['id'])) {
     $_SESSION['alert_message'] = "Error: Car not Found.";
 }
 
+$pay = '500';
 if (isset($_POST['submit'])) {
 
     $fname = mysqli_real_escape_string($conn, $_POST['f-name']);
@@ -28,16 +29,17 @@ if (isset($_POST['submit'])) {
     $contact = mysqli_real_escape_string($conn, $_POST['contact']);
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     $date = mysqli_real_escape_string($conn, $_POST['date']);
-    $cname = mysqli_real_escape_string($conn, $_POST['car-name']);
+    $c_name = mysqli_real_escape_string($conn, $_POST['car-name']);
     $address = mysqli_real_escape_string($conn, $_POST['address']);
+    $fee = mysqli_real_escape_string($conn, $_POST['fee']);
 
     if (empty($fname) || empty($email) || empty($contact) || empty($date) || empty($cname) || empty($address)) {
         $_SESSION['alert_message'] = "Error: All fields are required.";
     } else {
-        $insert = $conn->prepare("INSERT INTO `booking_details` (`First Name`, `Email`, `Contact`, `Gender`, `Booking Date`, `Car Name`, `Address`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $insert->bind_param("sssssss", $fname, $email, $contact, $gender, $date, $cname, $address);
+        $insert = $conn->prepare("INSERT INTO `booking_details` (`First Name`, `Email`, `Contact`, `Gender`, `Booking Date`, `Car Name`, `Address`, `booking fees`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $insert->bind_param("ssssssss", $fname, $email, $contact, $gender, $date, $c_name, $address, $fee);
         if ($insert->execute()) {
-            $_SESSION['alert_message'] = "Booking successful!";
+            $_SESSION['alert_message'] = "Payment And Booking successful! Thank You";
         } else {
             $_SESSION['alert_message'] = "Error: Unable to process booking.";
         }
@@ -169,7 +171,7 @@ if (isset($_POST['submit'])) {
             ?>
             <input type="text" name="f-name" value="<?php echo $data['Name']; ?>">
             <!-- <input type="text" name="l-name" placeholder="Enter Your Last Name"> -->
-            <input type="email" name="email" value="<?php echo $data['Email']; ?>" >
+            <input type="email" name="email" value="<?php echo $data['Email']; ?>">
             <input type="number" name="contact" value="<?php echo $data['Contact']; ?>">
             <label for="gender">Select Gneder : </label>
             <select name="gender">
@@ -179,8 +181,10 @@ if (isset($_POST['submit'])) {
             <label for="date">Book the date : </label>
             <input type="date" name="date">
             <input type="text" name="car-name" value="<?php echo $cname; ?>" readonly>
-            <textarea type="text" name="address" rows="3" class="text-box" placeholder="Enter Your Address"></textarea><br>
-            <input type="submit" name="submit" value="Book now" class="form-btn">
+            <textarea type="text" name="address" rows="3" class="text-box"
+                placeholder="Enter Your Address"></textarea><br>
+            <input type="text" name="fee" value="₹500" readonly>
+            <input type="submit" name="submit" value="Pay To Book" class="form-btn">
     </div>
 </body>
 

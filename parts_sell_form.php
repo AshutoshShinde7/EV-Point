@@ -3,10 +3,9 @@
 session_start();
 
 include 'connect.php';
-// $product_quantity = $_SESSION['product_quantity'];
+
 
 if (isset($_POST['submit'])) {
-    // $productId = $_POST['ID'];
     $pname = $_POST['p-name'];
     $price = $_POST['price'];
     $name = $_POST['name'];
@@ -116,7 +115,7 @@ if (isset($_POST['submit'])) {
         }
         ;
         ?>
-        <input type="text" name="p-name" class="box" required placeholder="Enter the Part Name">
+        <input type="text" name="p-name" class="box"  required placeholder="Enter the Part Name">
         <input type="number" name="price" class="box" required placeholder="Enter a Price">
         <input type="number" name="quantity" required placeholder="Enter the Quantity" class="box">
         <input type="text" name="name" required placeholder="Enter your Name" class="box">

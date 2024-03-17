@@ -52,8 +52,7 @@
       echo "<table border='1'>
         <tr>
             <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Full Name</th>
             <th>Email</th>
             <th>Contact</th>
             <th>Gender</th>
@@ -66,7 +65,6 @@
          echo "<tr>
             <td>{$row['ID']}</td>
             <td>{$row['First Name']}</td>
-            <td>{$row['Last Name']}</td>
             <td>{$row['Email']}</td>
             <td>{$row['Contact']}</td>
             <td>{$row['Gender']}</td>

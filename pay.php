@@ -46,10 +46,14 @@ include 'connect.php';
         }
 
         .receipt {
-            width: 300px;
+            width: 500px;
             margin: 0 auto;
             border: 1px solid #ccc;
             padding: 20px;
+        }
+
+        .receipt h1 {
+            font-size: 2rem;
         }
 
         .receipt h1,

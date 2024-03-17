@@ -72,7 +72,8 @@ if (isset($_SESSION["user"])) {
                 </span>
             </h1>
             <h1>We Have Everything <br>Your <span>EV Car</span> Need</h1>
-            <p>Explore our wide range of accessories and essentials to enhance your<br> electric driving experience.Quality, convenience, and comfort, all in one place.</p>
+            <p>Explore our wide range of accessories and essentials to enhance your<br> electric driving
+                experience.Quality, convenience, and comfort, all in one place.</p>
             <!-- Home Button -->
             <a href="#vehicles" class="btn">Discover Now</a>
         </div>
@@ -136,7 +137,7 @@ if (isset($_SESSION["user"])) {
                                 <span class="fas fa-circle"></span>
                                 <?php echo $data['Speed']; ?>km/h
                             </p>
-                            <a href="booking.php" class="btn">Book Your Test Drive Now</a>
+                            <a href="booking.php?id=<?php echo $data['ID']; ?>" class="btn">Book Your Test Drive Now</a>
                         </div>
                     </div>
 
@@ -175,7 +176,7 @@ if (isset($_SESSION["user"])) {
                     <div class="price">₹
                         <?php echo $data['Price']; ?> Lakh
                     </div>
-                    <a href="booking.php?id=<?php echo $data['ID']; ?>" class="btn">check out</a>
+                    <a href="booking.php?id=<?php echo $data['ID']; ?>" class="btn">Check out</a>
                 </div>
                 <?php
             }
@@ -192,7 +193,8 @@ if (isset($_SESSION["user"])) {
             <div class="about-text">
                 <span>About Us</span>
                 <h2>Cheap prices with <br>Quality EV Cars</h2>
-                <p>Affordable Excellence: Quality EV Cars at Unbeatable Prices! Discover your next ride today and experience the future of driving. Upgrade your journey with confidence and style..</p>
+                <p>Affordable Excellence: Quality EV Cars at Unbeatable Prices! Discover your next ride today and
+                    experience the future of driving. Upgrade your journey with confidence and style..</p>
                 <!-- About Button  -->
                 <a href="#footer" class="btn">Learn More</a>
             </div>
@@ -250,21 +252,21 @@ if (isset($_SESSION["user"])) {
                     </span>
                     <i class='bx bxs-star'>6 Reviews</i>
                     <?php
-                        if($pq>0){
-                    ?>
-                    <form action="order.php?id=<?php echo $data['ID']; ?>" method="post">
-                        <div class="q">
-                            <label class="lab">Qantity : </label>
-                            <input type="number" id="myInput" name="quantity" min="1" step="1" value="1">
-                        </div>
-                        <button type="submit" class="parts-btn btn">Buy Now</button>
-                    </form>
-                    <?php
-                        }else{
-                    ?>
+                    if ($pq > 0) {
+                        ?>
+                        <form action="order.php?id=<?php echo $data['ID']; ?>" method="post">
+                            <div class="q">
+                                <label class="lab">Qantity : </label>
+                                <input type="number" id="myInput" name="quantity" min="1" step="1" value="1">
+                            </div>
+                            <button type="submit" class="parts-btn btn">Buy Now</button>
+                        </form>
+                        <?php
+                    } else {
+                        ?>
                         <div class="unavailable">Out of Stock</div>
-                    <?php
-                        }
+                        <?php
+                    }
                     ?>
                 </div>
                 <?php
@@ -342,7 +344,7 @@ if (isset($_SESSION["user"])) {
             </div>
             <div class="footer-box">
                 <h3>Legal</h3>
-                <a href="#">Privecy</a>
+                <a href="#">Privacy</a>
                 <a href="#">Refund Policy</a>
                 <a href="#">Cookie Policy</a>
             </div>

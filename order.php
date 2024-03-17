@@ -4,6 +4,8 @@ session_start();
 
 include 'connect.php';
 
+$uid = $_SESSION['user_id'];
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -31,7 +33,7 @@ $t_price = $tprice * $pquantity;
 // echo $pquantity;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-    $pquantity = $_POST['quantity'];
+    // $pquantity = $_POST['quantity'];
     $oid = $_POST['id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -251,12 +253,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                         ;
                     }
                     ;
+                    $get = "SELECT * FROM users WHERE ID = '$uid'";
+                    $result = mysqli_query($conn, $get);
+                    $data = mysqli_fetch_array($result);
                     ?>
                     <input type="number" name="id" hidden>
                     <input type="number" name="quantity" value="<?php echo $pquantity; ?>" hidden>
-                    <input type="text" name="name" required placeholder="Enter your Name" class="box">
-                    <input type="email" name="email" placeholder="Enter your Email" required class="box">
-                    <input type="number" name="contact" required placeholder="Enter your Contact Number" class="box">
+                    <input type="text" name="name" value="<?php echo $data['Name']; ?>" required
+                        placeholder="Enter your Name" class="box">
+                    <input type="email" name="email" value="<?php echo $data['Email']; ?>"
+                        placeholder="Enter your Email" required class="box">
+                    <input type="number" name="contact" value="<?php echo $data['Contact']; ?>" required placeholder="Enter your Contact Number" class="box">
                     <textarea type="text" name="address" rows="3" required placeholder="Enter your Address"
                         class="text-box"></textarea>
                     <button type="submit" name="submit" value="Pay Now" class="form-btn">Pay Now</button>

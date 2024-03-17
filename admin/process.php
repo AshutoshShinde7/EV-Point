@@ -20,7 +20,7 @@ if (isset($_POST["create"])) {
         $type = mysqli_real_escape_string($conn, $_POST["type"]);
         $speed = mysqli_real_escape_string($conn, $_POST["speed"]);
 
-        $sqlInsert = "INSERT INTO `cars` (`Image`, `Title`, `Price`, `Model-Year`, `Transmission`, `Fuel Type`, `Speed`) VALUES ('$imagePath', '$title', '$price', '$year', '$trsm', '$type', '$speed')";
+        $sqlInsert = "INSERT INTO `cars` (`Image`, `Title`, `Price`, `ModelYear`, `Transmission`, `Fuel Type`, `Speed`) VALUES ('$imagePath', '$title', '$price', '$year', '$trsm', '$type', '$speed')";
         $result = mysqli_query($conn, $sqlInsert);
 
         $_SESSION["create"] = "Car Added Successfully!";
