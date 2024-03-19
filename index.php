@@ -2,19 +2,19 @@
 
 session_start();
 
-include('connect.php');
+include ('connect.php');
 
-if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+if (!isset ($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: login.php");
     exit;
 }
 
-if (isset($_SESSION['alert_message'])) {
+if (isset ($_SESSION['alert_message'])) {
     echo "<script>alert('" . $_SESSION['alert_message'] . "');</script>";
     unset($_SESSION['alert_message']);
 }
 
-if (isset($_SESSION["user"])) {
+if (isset ($_SESSION["user"])) {
     header("Location: index.php");
 }
 
@@ -59,6 +59,7 @@ if (isset($_SESSION["user"])) {
                 <li><a href="#blog" onclick="handleClick('blog')">Our Blog</a></li>
             </ul>
             <div class="s-l" id="login-btn">
+                <!-- <button id="viewOrdersBtn" class="bag">My Orders <i class='bx bx-package'></i></button> -->
                 <a href="logout.php" class="btn" id="login-btn--">LogOut</a>
             </div>
         </div>
@@ -329,10 +330,10 @@ if (isset($_SESSION["user"])) {
             <div class="footer-box">
                 <a href="#" class="logo">EV<span>Point</span></a>
                 <div class="social">
-                    <a href="#"><i class='bx bxl-facebook'></i>
-                        <a href="#"><i class='bx bxl-twitter'></i>
-                            <a href="#"><i class='bx bxl-instagram'></i>
-                                <a href="#"><i class='bx bxl-youtube'></i>
+                    <a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i>
+                        <a href="https://twitter.com/"><i class='bx bxl-twitter'></i>
+                            <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i>
+                                <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i>
                 </div>
             </div>
             <div class="footer-box">

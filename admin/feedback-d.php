@@ -46,7 +46,7 @@
 <section>
 
    <div>
-      <h2>User Data</h2>
+      <h2>Feedbacks</h2>
       <a href="admin.php" class="form-btn">Back</a>
    </div>
    <?php

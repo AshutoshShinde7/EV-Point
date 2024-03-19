@@ -123,6 +123,20 @@ header.shadow #search-icon {
   padding: 2rem 9%;
 }
 
+.bag {
+  color: #fff;
+  padding: 10px;
+  background-color: var(--main-color);
+}
+
+.bag:hover {
+  background-color: #f1b545;
+}
+
+#ordersContainer {
+  margin-top: 20px;
+}
+
 .home {
   max-width: 1524px;
   margin: auto;
