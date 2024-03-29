@@ -110,7 +110,7 @@
    ?>
    <div class="con">
       <header class="d-flex align-items-center justify-content-evenly ">
-         <h1>Car List</h1>
+         <h1>Part List</h1>
          <a href="#add_part" class="form-btn mb-4">Add New Part</a>
       </header>
       <?php
